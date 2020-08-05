@@ -40,6 +40,9 @@ PacifidlogTown_House2_EventScript_ClearReceivedFanClubTM:: @ 8203812
 	return
 
 PacifidlogTown_House2_EventScript_GiveReturn:: @ 8203816
+	checkitem ITEM_TM27, 1
+	compare VAR_RESULT, TRUE
+	goto_if_eq PacifidlogTown_House2_EventScript_AlreadyHaveReturn
 	msgbox PacifidlogTown_House2_Text_AdoringPokemonTakeThis, MSGBOX_DEFAULT
 	giveitem ITEM_TM27
 	compare VAR_RESULT, FALSE
@@ -50,18 +53,33 @@ PacifidlogTown_House2_EventScript_GiveReturn:: @ 8203816
 	release
 	end
 
+PacifidlogTown_House2_EventScript_AlreadyHaveReturn::
+	msgbox PacifidlogTown_House2_Text_AdoringPokemonReturnWouldFit, MSGBOX_DEFAULT
+	msgbox PacifidlogTown_House2_Text_ExplainReturnFrustration, MSGBOX_DEFAULT
+	release
+	end
+
 PacifidlogTown_House2_EventScript_PutInEffort:: @ 8203845
 	msgbox PacifidlogTown_House2_Text_PutInSomeMoreEffort, MSGBOX_DEFAULT
 	release
 	end
 
 PacifidlogTown_House2_EventScript_GiveFrustration:: @ 820384F
+	checkitem ITEM_TM21, 1
+	compare VAR_RESULT, TRUE
+	goto_if_eq PacifidlogTown_House2_EventScript_AlreadyHaveFrustration
 	msgbox PacifidlogTown_House2_Text_ViciousPokemonTakeThis, MSGBOX_DEFAULT
 	giveitem ITEM_TM21
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_FANCLUB_TM_THIS_WEEK
 	special SetPacifidlogTMReceivedDay
+	msgbox PacifidlogTown_House2_Text_ExplainReturnFrustration, MSGBOX_DEFAULT
+	release
+	end
+
+PacifidlogTown_House2_EventScript_AlreadyHaveFrustration::
+	msgbox PacifidlogTown_House2_Text_ViciousPokemonFrustrationWouldFit, MSGBOX_DEFAULT
 	msgbox PacifidlogTown_House2_Text_ExplainReturnFrustration, MSGBOX_DEFAULT
 	release
 	end
@@ -112,6 +130,11 @@ PacifidlogTown_House2_Text_AdoringPokemonTakeThis: @ 820396D
 	.string "A POKéMON that adoring and adorable\n"
 	.string "deserves a TM like this, no?$"
 
+PacifidlogTown_House2_Text_AdoringPokemonReturnWouldFit:
+	.string "It clearly likes you very much.\p"
+	.string "RETURN would fit a POKéMON that adoring\n"
+	.string "and adorable.$"
+
 PacifidlogTown_House2_Text_PutInSomeMoreEffort: @ 82039CE
 	.string "Hmm…\n"
 	.string "It's not bad, but it's also not good.\p"
@@ -122,6 +145,11 @@ PacifidlogTown_House2_Text_ViciousPokemonTakeThis: @ 8203A2F
 	.string "It has a vicious look to it.\p"
 	.string "A frightening POKéMON like that\n"
 	.string "deserves a TM like this.$"
+
+PacifidlogTown_House2_Text_ViciousPokemonFrustrationWouldFit:
+	.string "It has a vicious look to it.\p"
+	.string "FRUSTRATION would fit a frightening\n"
+	.string "POKéMON like that.$"
 
 PacifidlogTown_House2_Text_ExplainReturnFrustration: @ 8203A85
 	.string "If a POKéMON likes you a lot, RETURN's\n"

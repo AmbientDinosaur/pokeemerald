@@ -262,6 +262,7 @@ LavaridgeTown_EventScript_EggWoman:: @ 81EA744
 	message LavaridgeTown_Text_ReceivedTheEgg
 	waitfanfare
 	giveegg SPECIES_WYNAUT
+	clearflag FLAG_HIDE_SLATEPORT_CITY_INCENSE_SALESMAN
 	release
 	end
 

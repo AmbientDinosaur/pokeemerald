@@ -430,8 +430,8 @@ AbandonedShip_Rooms2_B1F_EventScript_ItemDiveBall:: @ 8291247
 	finditem ITEM_DIVE_BALL
 	end
 
-AbandonedShip_Room_B1F_EventScript_ItemTM13:: @ 8291254
-	finditem ITEM_TM13
+AbandonedShip_Room_B1F_EventScript_ItemDragonScale:: @ 8291254
+	finditem ITEM_DRAGON_SCALE
 	end
 
 AbandonedShip_Rooms2_1F_EventScript_ItemRevive:: @ 8291261
@@ -610,8 +610,8 @@ VictoryRoad_1F_EventScript_ItemPPUp:: @ 8291490
 	finditem ITEM_PP_UP
 	end
 
-VictoryRoad_B1F_EventScript_ItemTM29:: @ 829149D
-	finditem ITEM_TM29
+VictoryRoad_B1F_EventScript_ItemMaxRevive:: @ 829149D
+	finditem ITEM_MAX_REVIVE
 	end
 
 VictoryRoad_B1F_EventScript_ItemFullRestore:: @ 82914AA

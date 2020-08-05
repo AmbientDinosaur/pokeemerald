@@ -562,20 +562,20 @@ SlateportCity_PokemartDecor: @ 81DD1B8
 	release
 	end
 
-SlateportCity_EventScript_PowerTMClerk:: @ 81DD1D8
+SlateportCity_EventScript_IncenseClerk:: @ 81DD1D8
 	lock
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-	pokemart SlateportCity_Pokemart_PowerTMs
+	pokemart SlateportCity_Pokemart_Incenses
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 
 	.align 2
-SlateportCity_Pokemart_PowerTMs: @ 81DD1F0
-	.2byte ITEM_TM10  @ Hidden Power
-	.2byte ITEM_TM43  @ Secret Power
+SlateportCity_Pokemart_Incenses: @ 81DD1F0
+	.2byte ITEM_SEA_INCENSE
+	.2byte ITEM_LAX_INCENSE
 	.2byte ITEM_NONE
 	release
 	end

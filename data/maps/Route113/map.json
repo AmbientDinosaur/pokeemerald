@@ -450,8 +450,8 @@
       "x": 22,
       "y": 5,
       "elevation": 3,
-      "item": "ITEM_TM32",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_113_TM_32"
+      "item": "ITEM_BRIGHT_POWDER",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_113_BRIGHT_POWDER"
     },
     {
       "type": "hidden_item",

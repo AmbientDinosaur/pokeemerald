@@ -13,7 +13,7 @@ MauvilleCity_OnTransition: @ 81DF38B
 	setflag FLAG_SYS_TV_START
 	clearflag FLAG_MAUVILLE_GYM_BARRIERS_STATE
 	setvar VAR_MAUVILLE_GYM_STATE, 0
-	call_if_set FLAG_GOT_TM24_FROM_WATTSON, MauvilleCity_EventScript_MoveWattsonBackToGym
+	call_if_set FLAG_GOT_LIGHT_BALL_FROM_WATTSON, MauvilleCity_EventScript_MoveWattsonBackToGym
 	end
 
 MauvilleCity_EventScript_MoveWattsonBackToGym:: @ 81DF3A9
@@ -424,7 +424,7 @@ MauvilleCity_Movement_ScottExitEast: @ 81DF72F
 MauvilleCity_EventScript_Wattson:: @ 81DF73A
 	lock
 	faceplayer
-	goto_if_set FLAG_GOT_TM24_FROM_WATTSON, MauvilleCity_EventScript_ReceivedThunderbolt
+	goto_if_set FLAG_GOT_LIGHT_BALL_FROM_WATTSON, MauvilleCity_EventScript_ReceivedLightBall
 	compare VAR_NEW_MAUVILLE_STATE, 2
 	goto_if_eq MauvilleCity_EventScript_CompletedNewMauville
 	goto_if_set FLAG_GOT_BASEMENT_KEY_FROM_WATTSON, MauvilleCity_EventScript_BegunNewMauville
@@ -441,16 +441,16 @@ MauvilleCity_EventScript_BegunNewMauville:: @ 81DF77A
 	end
 
 MauvilleCity_EventScript_CompletedNewMauville:: @ 81DF784
-	msgbox MauvilleCity_Text_WattsonThanksTakeTM, MSGBOX_DEFAULT
-	giveitem ITEM_TM24
+	msgbox MauvilleCity_Text_WattsonThanksTakeItem, MSGBOX_DEFAULT
+	giveitem ITEM_LIGHT_BALL
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
-	setflag FLAG_GOT_TM24_FROM_WATTSON
+	setflag FLAG_GOT_LIGHT_BALL_FROM_WATTSON
 	msgbox MauvilleCity_Text_WattsonYoungTakeCharge, MSGBOX_DEFAULT
 	release
 	end
 
-MauvilleCity_EventScript_ReceivedThunderbolt:: @ 81DF7B0
+MauvilleCity_EventScript_ReceivedLightBall:: @ 81DF7B0
 	msgbox MauvilleCity_Text_WattsonYoungTakeCharge, MSGBOX_DEFAULT
 	release
 	end
@@ -607,12 +607,11 @@ MauvilleCity_Text_WattsonWontBeChallenge: @ 81E0154
 	.string "That's it, then, you have my trust!\n"
 	.string "Wahahahaha!$"
 
-MauvilleCity_Text_WattsonThanksTakeTM: @ 81E020E
+MauvilleCity_Text_WattsonThanksTakeItem: @ 81E020E
 	.string "WATTSON: Wahahahaha!\p"
 	.string "I knew it, {PLAYER}{KUN}! I knew I'd made\n"
 	.string "the right choice asking you!\p"
-	.string "This is my thanks--a TM containing\n"
-	.string "THUNDERBOLT!\p"
+	.string "This is my thanks--a LIGHT BALL!\n"
 	.string "Go on, you've earned it!$"
 
 MauvilleCity_Text_WattsonYoungTakeCharge: @ 81E02AA

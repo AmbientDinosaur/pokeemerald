@@ -4,7 +4,7 @@ FallarborTown_CozmosHouse_MapScripts:: @ 8200F12
 FallarborTown_CozmosHouse_EventScript_ProfCozmo:: @ 8200F13
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_TM27, FallarborTown_CozmosHouse_EventScript_GaveMeteorite
+	goto_if_set FLAG_RECEIVED_LUCKY_EGG, FallarborTown_CozmosHouse_EventScript_GaveMeteorite
 	checkitem ITEM_METEORITE, 1
 	compare VAR_RESULT, TRUE
 	goto_if_eq FallarborTown_CozmosHouse_EventScript_PlayerHasMeteorite
@@ -17,13 +17,13 @@ FallarborTown_CozmosHouse_EventScript_PlayerHasMeteorite:: @ 8200F38
 	call_if_set FLAG_TEMP_2, FallarborTown_CozmosHouse_EventScript_AskForMeteorite
 	compare VAR_RESULT, NO
 	goto_if_eq FallarborTown_CozmosHouse_EventScript_DeclineGiveMeteorite
-	msgbox FallarborTown_CozmosHouse_Text_PleaseUseThisTM, MSGBOX_DEFAULT
-	giveitem ITEM_TM27
+	msgbox FallarborTown_CozmosHouse_Text_PleaseUseThisItem, MSGBOX_DEFAULT
+	giveitem ITEM_LUCKY_EGG
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setvar VAR_0x8004, ITEM_METEORITE
 	call Common_EventScript_PlayerHandedOverTheItem
-	setflag FLAG_RECEIVED_TM27
+	setflag FLAG_RECEIVED_LUCKY_EGG
 	msgbox FallarborTown_CozmosHouse_Text_ReallyGoingToHelpMyResearch, MSGBOX_DEFAULT
 	release
 	end
@@ -51,7 +51,7 @@ FallarborTown_CozmosHouse_EventScript_GaveMeteorite:: @ 8200FB2
 FallarborTown_CozmosHouse_EventScript_CozmosWife:: @ 8200FBC
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_TM27, FallarborTown_CozmosHouse_EventScript_CozmoIsHappy
+	goto_if_set FLAG_RECEIVED_LUCKY_EGG, FallarborTown_CozmosHouse_EventScript_CozmoIsHappy
 	goto_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, FallarborTown_CozmosHouse_EventScript_CozmoIsSad
 	msgbox FallarborTown_CozmosHouse_Text_CozmoWentToMeteorFalls, MSGBOX_DEFAULT
 	release
@@ -84,10 +84,10 @@ FallarborTown_CozmosHouse_Text_IsThatMeteoriteMayIHaveIt: @ 82010A2
 	.string "took from METEOR FALLS?\p"
 	.string "Please, may I have it?\p"
 	.string "I'm not asking for it for free.\n"
-	.string "How about in exchange for this TM?$"
+	.string "How about in exchange for a LUCKY EGG?$"
 
-FallarborTown_CozmosHouse_Text_PleaseUseThisTM: @ 8201159
-	.string "PROF. COZMO: This TM, it represents\n"
+FallarborTown_CozmosHouse_Text_PleaseUseThisItem: @ 8201159
+	.string "PROF. COZMO: This LUCKY EGG represents\n"
 	.string "my feeling of gratitude.\l"
 	.string "Please use it!$"
 
@@ -104,7 +104,7 @@ FallarborTown_CozmosHouse_Text_MayIHaveMeteorite: @ 8201249
 	.string "PROF. COZMO: Please, may I have that\n"
 	.string "METEORITE?\p"
 	.string "I'm not asking for it for free.\n"
-	.string "How about in exchange for this TM?$"
+	.string "How about in exchange for a LUCKY EGG?$"
 
 FallarborTown_CozmosHouse_Text_CozmoWentToMeteorFalls: @ 82012BC
 	.string "PROF. COZMO went off to METEOR FALLS\n"

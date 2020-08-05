@@ -283,7 +283,7 @@ PlayersHouse_2F_EventScript_Notebook:: @ 81F8656
 	end
 
 PlayersHouse_2F_EventScript_GameCube:: @ 81F865F
-	.ifdef DEBUG
+	.ifdef DEBUG //remove later
 	additem ITEM_POTION, 99
 	additem ITEM_MASTER_BALL, 99
 	additem ITEM_RARE_CANDY, 99

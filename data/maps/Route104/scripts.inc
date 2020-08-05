@@ -352,7 +352,7 @@ Route104_EventScript_Boy2:: @ 81ED057
 	end
 
 Route104_EventScript_ReceivedBulletSeed:: @ 81ED086
-	msgbox Route104_Text_TMsAreOneTimeUse, MSGBOX_DEFAULT
+	msgbox Route104_Text_TMsCanBeUsedManyTimes, MSGBOX_DEFAULT
 	release
 	end
 
@@ -1055,12 +1055,12 @@ Route104_Text_LikeFillingMouthWithSeedsTakeThis: @ 81ED838
 	.string "Use it on a POKéMON, and it will learn\n"
 	.string "a move for firing seeds rapidly.$"
 
-Route104_Text_TMsAreOneTimeUse: @ 81ED8E7
+Route104_Text_TMsCanBeUsedManyTimes: @ 81ED8E7
 	.string "A word of advice!\p"
-	.string "A TM, TECHNICAL MACHINE, is good only\n"
-	.string "for one-time use.\p"
-	.string "Once you use it, it's gone.\n"
-	.string "Think twice before using it!$"
+	.string "A TM, or TECHNICAL MACHINE, can be used\n"
+	.string "many times.\p"
+	.string "It won't go away. So try it out as many\n"
+	.string "times as you want!$"
 
 Route104_Text_DontNeedThisTakeIt: @ 81ED96A
 	.string "This FLOWER SHOP started selling\n"
