@@ -2014,58 +2014,27 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
         case ABILITYEFFECT_ABSORBING: // 3
             if (move)
             {
+                u8 statId;
                 switch (gLastUsedAbility)
                 {
                 case ABILITY_VOLT_ABSORB:
-                    if (moveType == TYPE_ELECTRIC && gBattleMoves[move].power != 0)
-                    {
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain_PPLoss;
-
+                    if (moveType == TYPE_ELECTRIC)
                         effect = 1;
-                    }
                     break;
                 case ABILITY_WATER_ABSORB:
-                    if (moveType == TYPE_WATER && gBattleMoves[move].power != 0)
-                    {
-                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain;
-                        else
-                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain_PPLoss;
-
+                    if (moveType == TYPE_WATER)
                         effect = 1;
-                    }
+                    break;
+                case ABILITY_LIGHTNING_ROD:
+                    if (moveType == TYPE_ELECTRIC)
+                        effect = 2;
                     break;
                 case ABILITY_FLASH_FIRE:
-                    if (moveType == TYPE_FIRE && !(gBattleMons[battler].status1 & STATUS1_FREEZE))
-                    {
-                        if (!(gBattleResources->flags->flags[battler] & RESOURCE_FLAG_FLASH_FIRE))
-                        {
-                            gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-                            if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                                gBattlescriptCurrInstr = BattleScript_FlashFireBoost;
-                            else
-                                gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
-
-                            gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_FLASH_FIRE;
-                            effect = 2;
-                        }
-                        else
-                        {
-                            gBattleCommunication[MULTISTRING_CHOOSER] = 1;
-                            if (gProtectStructs[gBattlerAttacker].notFirstStrike)
-                                gBattlescriptCurrInstr = BattleScript_FlashFireBoost;
-                            else
-                                gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
-
-                            effect = 2;
-                        }
-                    }
+                    if (moveType == TYPE_FIRE)
+                        effect = 2;
                     break;
                 }
-                if (effect == 1)
+                if (effect == 1) // Drain Hp ability
                 {
                     if (gBattleMons[battler].maxHP == gBattleMons[battler].hp)
                     {
@@ -2076,10 +2045,32 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     }
                     else
                     {
+                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
+                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain;
+                        else
+                            gBattlescriptCurrInstr = BattleScript_MoveHPDrain_PPLoss;
+
                         gBattleMoveDamage = gBattleMons[battler].maxHP / 4;
                         if (gBattleMoveDamage == 0)
                             gBattleMoveDamage = 1;
                         gBattleMoveDamage *= -1;
+                    }
+                }
+                else if (effect == 2) // Boost Sp. Atk stat ability
+                {
+                    if (gBattleMons[battler].statStages[STAT_SPATK] == MAX_STAT_STAGE)
+                    {
+                        if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
+                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
+                        else
+                            gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless_PPLoss;
+                    }
+                    else
+                    {
+                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
+                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain;
+                        else
+                            gBattlescriptCurrInstr = BattleScript_MoveStatDrain_PPLoss;
                     }
                 }
             }
