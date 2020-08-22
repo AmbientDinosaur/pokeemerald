@@ -4095,7 +4095,38 @@ BattleScript_IntimidatePrevented:
 	printstring STRINGID_PREVENTEDFROMWORKING
 	waitmessage 0x40
 	goto BattleScript_IntimidateActivatesLoopIncrement
-	
+
+BattleScript_IlluminateActivatesEnd3::
+	call BattleScript_PauseIlluminateActivates
+	end3
+
+BattleScript_PauseIlluminateActivates:
+	pause 0x20
+BattleScript_IlluminateActivates::
+	setbyte gBattlerTarget, 0x0
+	setstatchanger STAT_EVASION, 1, TRUE
+BattleScript_IlluminateActivatesLoop:
+	trygetintimidatetarget BattleScript_IlluminateActivatesReturn
+	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_IlluminateActivatesLoopIncrement
+	jumpifability BS_TARGET, ABILITY_CLEAR_BODY, BattleScript_IlluminatePrevented
+	jumpifability BS_TARGET, ABILITY_WHITE_SMOKE, BattleScript_IlluminatePrevented
+	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | STAT_BUFF_ALLOW_PTR, BattleScript_IlluminateActivatesLoopIncrement
+	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 0x1, BattleScript_IlluminateActivatesLoopIncrement
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_PKMNLOWERSEVASIONWITH
+	waitmessage 0x40
+BattleScript_IlluminateActivatesLoopIncrement:
+	addbyte gBattlerTarget, 0x1
+	goto BattleScript_IlluminateActivatesLoop
+BattleScript_IlluminateActivatesReturn:
+	return
+BattleScript_IlluminatePrevented:
+	pause 0x20
+	printstring STRINGID_PREVENTEDFROMWORKING
+	waitmessage 0x40
+	goto BattleScript_IlluminateActivatesLoopIncrement
+
 BattleScript_DroughtActivates::
 	pause 0x20
 	printstring STRINGID_PKMNSXINTENSIFIEDSUN
