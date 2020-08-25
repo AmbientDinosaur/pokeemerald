@@ -2209,6 +2209,25 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                 break;
             }
             break;
+        case ABILITYEFFECT_ON_DAMAGE_ATTACKER: // Same as above, but for attacker
+            switch (gLastUsedAbility)
+            {
+            case ABILITY_STENCH:
+                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                 && TARGET_TURN_DAMAGED
+                 && (Random() % 10) == 0
+                 && gBattleMoves[gCurrentMove].flags & FLAG_KINGSROCK_AFFECTED
+                 && gBattleMons[gBattlerAttacker].item != ITEM_KINGS_ROCK
+                 && gBattleMons[gBattlerTarget].hp)
+                {
+                    gBattleCommunication[MOVE_EFFECT_BYTE] = MOVE_EFFECT_FLINCH;
+                    BattleScriptPushCursor();
+                    SetMoveEffect(FALSE, 0);
+                    BattleScriptPop();
+                }
+                break;
+            }
+            break;
         case ABILITYEFFECT_IMMUNITY: // 5
             for (battler = 0; battler < gBattlersCount; battler++)
             {
