@@ -4183,15 +4183,11 @@ BattleScript_MoveStatDrain_PPLoss::
 BattleScript_MoveStatDrain::
 	attackstring
 	pause 0x20
-	setstatchanger STAT_SPATK, 1, FALSE
-	statbuffchange STAT_BUFF_ALLOW_PTR, BattleScript_MoveStatDrainEnd
-	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 0x1, BattleScript_MoveStatDrainEnd
 	setgraphicalstatchangevalues
 	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	waitanimation
 	printstring STRINGID_TARGETABILITYSTATRAISE
 	waitmessage 0x40
-BattleScript_MoveStatDrainEnd::
 	goto BattleScript_MoveEnd
 
 BattleScript_MonMadeMoveUseless_PPLoss::

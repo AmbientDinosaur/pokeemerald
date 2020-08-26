@@ -2038,11 +2038,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     break;
                 case ABILITY_LIGHTNING_ROD:
                     if (moveType == TYPE_ELECTRIC)
-                        effect = 2;
+                        effect = 2, statId = STAT_SPATK;
                     break;
                 case ABILITY_FLASH_FIRE:
                     if (moveType == TYPE_FIRE)
-                        effect = 2;
+                        effect = 2, statId = STAT_SPATK;
                     break;
                 }
                 if (effect == 1) // Drain Hp ability
@@ -2069,7 +2069,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                 }
                 else if (effect == 2) // Boost Sp. Atk stat ability
                 {
-                    if (gBattleMons[battler].statStages[STAT_SPATK] == MAX_STAT_STAGE)
+                    if (gBattleMons[battler].statStages[statId] == MAX_STAT_STAGE)
                     {
                         if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
                             gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
@@ -2082,6 +2082,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                             gBattlescriptCurrInstr = BattleScript_MoveStatDrain;
                         else
                             gBattlescriptCurrInstr = BattleScript_MoveStatDrain_PPLoss;
+
+                        SET_STATCHANGER(statId, 1, FALSE);
+                        gBattleMons[battler].statStages[statId]++;
+                        PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
                     }
                 }
             }
