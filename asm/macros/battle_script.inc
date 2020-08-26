@@ -1245,6 +1245,10 @@
 	.byte 0xf8
 	.byte \param0
 	.endm
+
+	.macro multihitresultmessage
+	.byte 0xf9
+	.endm
 	
 @ various command changed to more readable macros
 	.macro cancelmultiturnmoves battler:req

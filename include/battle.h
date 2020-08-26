@@ -140,6 +140,7 @@ struct SpecialStatus
     u32 ppNotAffectedByPressure:1;
     u32 flag40:1;
     u32 focusBanded:1;
+    u32 sturdied:1;
     s32 dmg;
     s32 physicalDmg;
     s32 specialDmg;
@@ -661,7 +662,7 @@ extern u16 gLastResultingMoves[MAX_BATTLERS_COUNT];
 extern u16 gLockedMoves[MAX_BATTLERS_COUNT];
 extern u8 gLastHitBy[MAX_BATTLERS_COUNT];
 extern u16 gChosenMoveByBattler[MAX_BATTLERS_COUNT];
-extern u8 gMoveResultFlags;
+extern u16 gMoveResultFlags;
 extern u32 gHitMarker;
 extern u8 gTakenDmgByBattler[MAX_BATTLERS_COUNT];
 extern u8 gUnknown_0202428C;
