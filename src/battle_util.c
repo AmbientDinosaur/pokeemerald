@@ -2682,12 +2682,16 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
             case HOLD_EFFECT_RESTORE_HP:
                 if (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 2 && !moveTurn)
                 {
-                    gBattleMoveDamage = battlerHoldEffectParam;
-                    if (gBattleMons[battlerId].hp + battlerHoldEffectParam > gBattleMons[battlerId].maxHP)
-                        gBattleMoveDamage = gBattleMons[battlerId].maxHP - gBattleMons[battlerId].hp;
-                    gBattleMoveDamage *= -1;
-                    BattleScriptExecute(BattleScript_ItemHealHP_RemoveItem);
-                    effect = 4;
+                    if (gBattleMons[battlerId].item == ITEM_SITRUS_BERRY)
+                        gBattleMoveDamage = gBattleMons[battlerId].maxHP * battlerHoldEffectParam / 100;
+                    else
+                        gBattleMoveDamage = battlerHoldEffectParam;
+
+                        if (gBattleMons[battlerId].hp + battlerHoldEffectParam > gBattleMons[battlerId].maxHP)
+                            gBattleMoveDamage = gBattleMons[battlerId].maxHP - gBattleMons[battlerId].hp;
+                        gBattleMoveDamage *= -1;
+                        BattleScriptExecute(BattleScript_ItemHealHP_RemoveItem);
+                        effect = 4;
                 }
                 break;
             case HOLD_EFFECT_RESTORE_PP:
@@ -2759,7 +2763,10 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 break;
             // nice copy/paste there gamefreak, making a function for confuse berries was too much eh?
             case HOLD_EFFECT_CONFUSE_SPICY:
-                if (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 2 && !moveTurn)
+                if (((gBattleMons[battlerId].ability == ABILITY_GLUTTONY
+                    && gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 2)
+                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 4))
+                    && !moveTurn)
                 {
                     PREPARE_FLAVOR_BUFFER(gBattleTextBuff1, FLAVOR_SPICY);
 
@@ -2777,7 +2784,10 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_CONFUSE_DRY:
-                if (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 2 && !moveTurn)
+                if (((gBattleMons[battlerId].ability == ABILITY_GLUTTONY
+                    && gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 2)
+                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 4))
+                    && !moveTurn)
                 {
                     PREPARE_FLAVOR_BUFFER(gBattleTextBuff1, FLAVOR_DRY);
 
@@ -2795,7 +2805,10 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_CONFUSE_SWEET:
-                if (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 2 && !moveTurn)
+                if (((gBattleMons[battlerId].ability == ABILITY_GLUTTONY
+                    && gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 2)
+                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 4))
+                    && !moveTurn)
                 {
                     PREPARE_FLAVOR_BUFFER(gBattleTextBuff1, FLAVOR_SWEET);
 
@@ -2813,7 +2826,10 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_CONFUSE_BITTER:
-                if (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 2 && !moveTurn)
+                if (((gBattleMons[battlerId].ability == ABILITY_GLUTTONY
+                    && gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 2)
+                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 4))
+                    && !moveTurn)
                 {
                     PREPARE_FLAVOR_BUFFER(gBattleTextBuff1, FLAVOR_BITTER);
 
@@ -2831,7 +2847,10 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_CONFUSE_SOUR:
-                if (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 2 && !moveTurn)
+                if (((gBattleMons[battlerId].ability == ABILITY_GLUTTONY
+                    && gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 2)
+                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 4))
+                    && !moveTurn)
                 {
                     PREPARE_FLAVOR_BUFFER(gBattleTextBuff1, FLAVOR_SOUR);
 
@@ -2850,13 +2869,11 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 break;
             // copy/paste again, smh
             case HOLD_EFFECT_ATTACK_UP:
-                if ((gBattleMons[battlerId].ability == ABILITY_GLUTTONY 
-                    && gBattleMons[battlerId].hp <= (gBattleMons[battlerId].maxHP / battlerHoldEffectParam) * 2 
-                    && !moveTurn 
-                    && gBattleMons[battlerId].statStages[STAT_ATK] < MAX_STAT_STAGE) 
-                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / battlerHoldEffectParam 
-                    && !moveTurn 
-                    && gBattleMons[battlerId].statStages[STAT_ATK] < MAX_STAT_STAGE))
+                if (((gBattleMons[battlerId].ability == ABILITY_GLUTTONY
+                    && gBattleMons[battlerId].hp <= (gBattleMons[battlerId].maxHP / battlerHoldEffectParam) * 2)
+                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / battlerHoldEffectParam))
+                    && !moveTurn
+                    && gBattleMons[battlerId].statStages[STAT_ATK] < MAX_STAT_STAGE)
                 {
                     PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_ATK);
                     PREPARE_STRING_BUFFER(gBattleTextBuff2, STRINGID_STATROSE);
@@ -2870,13 +2887,11 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_DEFENSE_UP:
-                if ((gBattleMons[battlerId].ability == ABILITY_GLUTTONY 
-                    && gBattleMons[battlerId].hp <= (gBattleMons[battlerId].maxHP / battlerHoldEffectParam) * 2 
-                    && !moveTurn 
-                    && gBattleMons[battlerId].statStages[STAT_DEF] < MAX_STAT_STAGE) 
-                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / battlerHoldEffectParam 
-                    && !moveTurn 
-                    && gBattleMons[battlerId].statStages[STAT_DEF] < MAX_STAT_STAGE))
+                if (((gBattleMons[battlerId].ability == ABILITY_GLUTTONY
+                    && gBattleMons[battlerId].hp <= (gBattleMons[battlerId].maxHP / battlerHoldEffectParam) * 2)
+                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / battlerHoldEffectParam))
+                    && !moveTurn
+                    && gBattleMons[battlerId].statStages[STAT_DEF] < MAX_STAT_STAGE)
                 {
                     PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_DEF);
 
@@ -2889,13 +2904,11 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_SPEED_UP:
-                if ((gBattleMons[battlerId].ability == ABILITY_GLUTTONY 
-                    && gBattleMons[battlerId].hp <= (gBattleMons[battlerId].maxHP / battlerHoldEffectParam) * 2 
-                    && !moveTurn 
-                    && gBattleMons[battlerId].statStages[STAT_SPEED] < MAX_STAT_STAGE) 
-                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / battlerHoldEffectParam 
-                    && !moveTurn 
-                    && gBattleMons[battlerId].statStages[STAT_SPEED] < MAX_STAT_STAGE))
+                if (((gBattleMons[battlerId].ability == ABILITY_GLUTTONY
+                    && gBattleMons[battlerId].hp <= (gBattleMons[battlerId].maxHP / battlerHoldEffectParam) * 2)
+                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / battlerHoldEffectParam))
+                    && !moveTurn
+                    && gBattleMons[battlerId].statStages[STAT_SPEED] < MAX_STAT_STAGE)
                 {
                     PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPEED);
 
@@ -2908,13 +2921,11 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_SP_ATTACK_UP:
-                if ((gBattleMons[battlerId].ability == ABILITY_GLUTTONY 
-                    && gBattleMons[battlerId].hp <= (gBattleMons[battlerId].maxHP / battlerHoldEffectParam) * 2 
-                    && !moveTurn 
-                    && gBattleMons[battlerId].statStages[STAT_SPATK] < MAX_STAT_STAGE) 
-                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / battlerHoldEffectParam 
-                    && !moveTurn 
-                    && gBattleMons[battlerId].statStages[STAT_SPATK] < MAX_STAT_STAGE))
+                if (((gBattleMons[battlerId].ability == ABILITY_GLUTTONY
+                    && gBattleMons[battlerId].hp <= (gBattleMons[battlerId].maxHP / battlerHoldEffectParam) * 2)
+                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / battlerHoldEffectParam))
+                    && !moveTurn
+                    && gBattleMons[battlerId].statStages[STAT_SPATK] < MAX_STAT_STAGE)
                 {
                     PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPATK);
 
@@ -2927,13 +2938,11 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_SP_DEFENSE_UP:
-                if ((gBattleMons[battlerId].ability == ABILITY_GLUTTONY 
-                    && gBattleMons[battlerId].hp <= (gBattleMons[battlerId].maxHP / battlerHoldEffectParam) * 2 
-                    && !moveTurn 
-                    && gBattleMons[battlerId].statStages[STAT_SPDEF] < MAX_STAT_STAGE) 
-                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / battlerHoldEffectParam 
-                    && !moveTurn 
-                    && gBattleMons[battlerId].statStages[STAT_SPDEF] < MAX_STAT_STAGE))
+                if (((gBattleMons[battlerId].ability == ABILITY_GLUTTONY
+                    && gBattleMons[battlerId].hp <= (gBattleMons[battlerId].maxHP / battlerHoldEffectParam) * 2)
+                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / battlerHoldEffectParam))
+                    && !moveTurn
+                    && gBattleMons[battlerId].statStages[STAT_SPDEF] < MAX_STAT_STAGE)
                 {
                     PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPDEF);
 
@@ -2946,13 +2955,11 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_CRITICAL_UP:
-                if ((gBattleMons[battlerId].ability == ABILITY_GLUTTONY 
-                    && gBattleMons[battlerId].hp <= (gBattleMons[battlerId].maxHP / battlerHoldEffectParam) * 2 
-                    && !moveTurn 
-                    && !(gBattleMons[battlerId].status2 & STATUS2_FOCUS_ENERGY)) 
-                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / battlerHoldEffectParam 
-                    && !moveTurn 
-                    && !(gBattleMons[battlerId].status2 & STATUS2_FOCUS_ENERGY)))
+                if (((gBattleMons[battlerId].ability == ABILITY_GLUTTONY
+                    && gBattleMons[battlerId].hp <= (gBattleMons[battlerId].maxHP / battlerHoldEffectParam) * 2)
+                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / battlerHoldEffectParam))
+                    && !moveTurn
+                    && !(gBattleMons[battlerId].status2 & STATUS2_FOCUS_ENERGY))
                 {
                     gBattleMons[battlerId].status2 |= STATUS2_FOCUS_ENERGY;
                     BattleScriptExecute(BattleScript_BerryFocusEnergyEnd2);
@@ -2960,11 +2967,10 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_RANDOM_STAT_UP:
-                if ((gBattleMons[battlerId].ability == ABILITY_GLUTTONY 
-                    && gBattleMons[battlerId].hp <= (gBattleMons[battlerId].maxHP / battlerHoldEffectParam) * 2 
+                if (((gBattleMons[battlerId].ability == ABILITY_GLUTTONY
+                    && gBattleMons[battlerId].hp <= (gBattleMons[battlerId].maxHP / battlerHoldEffectParam) * 2)
+                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / battlerHoldEffectParam))
                     && !moveTurn)
-                    || (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / battlerHoldEffectParam 
-                    && !moveTurn))
                 {
                     for (i = 0; i < 5; i++)
                     {
