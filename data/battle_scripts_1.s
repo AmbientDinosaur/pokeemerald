@@ -3742,7 +3742,7 @@ BattleScript_EnduredMsg::
 	return
 
 BattleScript_SturdiedMsg::
-	printstring STRINGID_ENDUREDSTURDY
+	printstring STRINGID_PKMNENDUREDUSINGSTURDY
 	waitmessage 0x40
 	return
 
@@ -4036,6 +4036,15 @@ BattleScript_RainDishActivates::
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
+	end3
+
+BattleScript_SolarPowerActivates::
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_x100000
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	printstring STRINGID_PKMNSXTAKESITSTOLL
+	waitmessage 0x40
+	tryfaintmon BS_ATTACKER, FALSE, NULL
 	end3
 
 BattleScript_SandstreamActivates::

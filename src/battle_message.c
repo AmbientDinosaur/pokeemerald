@@ -522,7 +522,8 @@ static const u8 sText_Trainer2LoseText[];
 // New battle strings
 static const u8 sText_TargetAbilityRaisedStat[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nraised its {B_BUFF1}!");
 static const u8 sText_PkmnLowersEvasionWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nlowers {B_DEF_NAME_WITH_PREFIX}'s evasiveness!");
-static const u8 sText_EnduredViaSturdy[] = _("{B_DEF_NAME_WITH_PREFIX} ENDURED\nthe hit using {B_DEF_ABILITY}!");
+static const u8 sText_PkmnEnduredUsingSturdy[] = _("{B_DEF_NAME_WITH_PREFIX} ENDURED\nthe hit using {B_DEF_ABILITY}!");
+static const u8 sText_PkmnsXTakesItsToll[] = _("The {B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY}\ntakes its toll!");
 
 const u8 * const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
@@ -897,7 +898,8 @@ const u8 * const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_TRAINER2WINTEXT - 12] = sText_Trainer2WinText,
     [STRINGID_TARGETABILITYSTATRAISE - 12] = sText_TargetAbilityRaisedStat,
     [STRINGID_PKMNLOWERSEVASIONWITH - 12] = sText_PkmnLowersEvasionWith,
-    [STRINGID_ENDUREDSTURDY - 12] = sText_EnduredViaSturdy,
+    [STRINGID_PKMNENDUREDUSINGSTURDY - 12] = sText_PkmnEnduredUsingSturdy,
+    [STRINGID_PKMNSXTAKESITSTOLL - 12] = sText_PkmnsXTakesItsToll,
 };
 
 const u16 gMissStringIds[] =
