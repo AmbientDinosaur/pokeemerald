@@ -76,9 +76,12 @@ static const u8 sPurePowerDescription[] = _("Raises ATTACK.");
 static const u8 sShellArmorDescription[] = _("Blocks critical hits.");
 static const u8 sCacophonyDescription[] = _("Avoids sound-based moves.");
 static const u8 sAirLockDescription[] = _("Negates weather effects.");
+static const u8 sTangledFeetDescription[] = _("Ups evasion if confused.");
 static const u8 sGluttonyDescription[] = _("Uses berries early.");
 static const u8 sIronFistDescription[] = _("Powers up punches.");
 static const u8 sAdaptabilityDescription[] = _("Ups moves of same type.");
+static const u8 sSkillLinkDescription[] = _("Maximizes multi-hit moves.");
+static const u8 sHydrationDescription[] = _("Heals the body in rain.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -160,9 +163,12 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_SHELL_ARMOR] = _("SHELL ARMOR"),
     [ABILITY_CACOPHONY] = _("CACOPHONY"),
     [ABILITY_AIR_LOCK] = _("AIR LOCK"),
+    [ABILITY_TANGLED_FEET] = _("TANGLED FEET"),
     [ABILITY_GLUTTONY] = _("GLUTTONY"),
     [ABILITY_IRON_FIST] = _("IRON FIST"),
     [ABILITY_ADAPTABILITY] = _("ADAPTABILITY"),
+    [ABILITY_SKILL_LINK] = _("SKILL LINK"),
+    [ABILITY_HYDRATION] = _("HYDRATION"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -245,7 +251,10 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_SHELL_ARMOR] = sShellArmorDescription,
     [ABILITY_CACOPHONY] = sCacophonyDescription,
     [ABILITY_AIR_LOCK] = sAirLockDescription,
+    [ABILITY_TANGLED_FEET] = sTangledFeetDescription,
     [ABILITY_GLUTTONY] = sGluttonyDescription,
     [ABILITY_IRON_FIST] = sIronFistDescription,
     [ABILITY_ADAPTABILITY] = sAdaptabilityDescription,
+    [ABILITY_SKILL_LINK] = sSkillLinkDescription,
+    [ABILITY_HYDRATION] = sHydrationDescription,
 };
