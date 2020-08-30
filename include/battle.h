@@ -141,6 +141,7 @@ struct SpecialStatus
     u32 flag40:1;
     u32 focusBanded:1;
     u32 sturdied:1;
+    u32 stormDrainRedirected:1;
     s32 dmg;
     s32 physicalDmg;
     s32 specialDmg;

@@ -85,6 +85,10 @@ static const u8 sHydrationDescription[] = _("Heals the body in rain.");
 static const u8 sSolarPowerDescription[] = _("Powers up in sunshine.");
 static const u8 sQuickFeetDescription[] = _("Ups SPEED if suffering.");
 static const u8 sSniperDescription[] = _("Boosts critical hits.");
+static const u8 sTechnicianDescription[] = _("Boosts weaker moves.");
+static const u8 sStormDrainDescription[] = _("Draws water moves.");
+static const u8 sIceBodyDescription[] = _("Slight HP recovery in hail.");
+static const u8 sRecklessDescription[] = _("Boosts moves with recoil.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -175,6 +179,10 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_SOLAR_POWER] = _("SOLAR POWER"),
     [ABILITY_QUICK_FEET] = _("QUICK FEET"),
     [ABILITY_SNIPER] = _("SNIPER"),
+    [ABILITY_TECHNICIAN] = _("TECHNICIAN"),
+    [ABILITY_STORM_DRAIN] = _("STORM DRAIN"),
+    [ABILITY_ICE_BODY] = _("ICE BODY"),
+    [ABILITY_RECKLESS] = _("RECKLESS"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -266,4 +274,8 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_SOLAR_POWER] = sSolarPowerDescription,
     [ABILITY_QUICK_FEET] = sQuickFeetDescription,
     [ABILITY_SNIPER] = sSniperDescription,
+    [ABILITY_TECHNICIAN] = sTechnicianDescription,
+    [ABILITY_STORM_DRAIN] = sStormDrainDescription,
+    [ABILITY_ICE_BODY] = sIceBodyDescription,
+    [ABILITY_RECKLESS] = sRecklessDescription,
 };

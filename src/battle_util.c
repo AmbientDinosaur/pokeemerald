@@ -1953,11 +1953,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                 gBattlerAttacker = battler;
                 switch (gLastUsedAbility)
                 {
+                case ABILITY_ICE_BODY:
+                    if (WEATHER_HAS_EFFECT
+                     && (gBattleWeather & WEATHER_HAIL_ANY)
+                     && gBattleMons[battler].maxHP > gBattleMons[battler].hp)
+                    {
+                        goto ABILITY_WEATHER_RESTORE_HP;
+                    }
+                    break;
                 case ABILITY_RAIN_DISH:
                     if (WEATHER_HAS_EFFECT
                      && (gBattleWeather & WEATHER_RAIN_ANY)
                      && gBattleMons[battler].maxHP > gBattleMons[battler].hp)
                     {
+                    ABILITY_WEATHER_RESTORE_HP:
                         BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
                         gBattleMoveDamage = gBattleMons[battler].maxHP / 16;
                         if (gBattleMoveDamage == 0)
@@ -2058,6 +2067,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     break;
                 case ABILITY_LIGHTNING_ROD:
                     if (moveType == TYPE_ELECTRIC)
+                        effect = 2, statId = STAT_SPATK;
+                    break;
+                case ABILITY_STORM_DRAIN:
+                    if (moveType == TYPE_WATER)
                         effect = 2, statId = STAT_SPATK;
                     break;
                 case ABILITY_FLASH_FIRE:
@@ -3388,6 +3401,14 @@ u8 GetMoveTarget(u16 move, u8 setTarget)
                 targetBattler ^= BIT_FLANK;
                 RecordAbilityBattle(targetBattler, gBattleMons[targetBattler].ability);
                 gSpecialStatuses[targetBattler].lightningRodRedirected = 1;
+            }
+            else if (gBattleMoves[move].type == TYPE_WATER
+                && AbilityBattleEffects(ABILITYEFFECT_COUNT_OTHER_SIDE, gBattlerAttacker, ABILITY_STORM_DRAIN, 0, 0)
+                && gBattleMons[targetBattler].ability != ABILITY_STORM_DRAIN)
+            {
+                targetBattler ^= BIT_FLANK;
+                RecordAbilityBattle(targetBattler, gBattleMons[targetBattler].ability);
+                gSpecialStatuses[targetBattler].stormDrainRedirected = 1;
             }
         }
         break;

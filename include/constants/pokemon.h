@@ -243,6 +243,7 @@
 #define FLAG_MIRROR_MOVE_AFFECTED   0x10
 #define FLAG_KINGSROCK_AFFECTED     0x20
 #define FLAG_PUNCHING_MOVE          0x40
+#define FLAG_RECKLESS_AFFECTED      0x80
 
 // Growth rates
 #define GROWTH_MEDIUM_FAST  0

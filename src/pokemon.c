@@ -3184,7 +3184,11 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         defense = (150 * defense) / 100;
     if (attacker->ability == ABILITY_SOLAR_POWER && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY)
         spAttack = (150 * spAttack) / 100;
+    if (attacker->ability == ABILITY_TECHNICIAN && gBattleMovePower <= 60)
+        gBattleMovePower = (150 * gBattleMovePower) / 100;
     if (attacker->ability == ABILITY_IRON_FIST && gBattleMoves[gCurrentMove].flags & FLAG_PUNCHING_MOVE)
+        gBattleMovePower = (120 * gBattleMovePower) / 100;
+    if (attacker->ability == ABILITY_RECKLESS && gBattleMoves[gCurrentMove].flags & FLAG_RECKLESS_AFFECTED)
         gBattleMovePower = (120 * gBattleMovePower) / 100;
     if (attacker->ability == ABILITY_SNIPER && gCritMultiplier == 2)
         gBattleMovePower = (150 * gBattleMovePower) / 100;
