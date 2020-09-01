@@ -239,6 +239,18 @@ bool8 WasUnableToUseMove(u8 battler)
 
 void PrepareStringBattle(u16 stringId, u8 battler)
 {
+    if ((stringId == STRINGID_PKMNSSTATCHANGED4 || stringId == STRINGID_PKMNCUTSATTACKWITH || stringId == STRINGID_PKMNLOWERSEVASIONWITH)
+              && ((gBattleMons[gBattlerTarget].ability == ABILITY_DEFIANT && gBattleMons[gBattlerTarget].statStages[STAT_ATK] != MAX_STAT_STAGE)
+              || (gBattleMons[gBattlerTarget].ability == ABILITY_COMPETITIVE && gBattleMons[gBattlerTarget].statStages[STAT_SPATK] != MAX_STAT_STAGE)))
+    {
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_DefiantActivates;
+        if (gBattleMons[gBattlerTarget].ability == ABILITY_DEFIANT)
+            SET_STATCHANGER(STAT_ATK, 2, FALSE);
+        else
+            SET_STATCHANGER(STAT_SPATK, 2, FALSE);
+    }
+
     gActiveBattler = battler;
     BtlController_EmitPrintString(0, stringId);
     MarkBattlerForControllerExec(gActiveBattler);
@@ -2076,6 +2088,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                 case ABILITY_FLASH_FIRE:
                     if (moveType == TYPE_FIRE)
                         effect = 2, statId = STAT_SPATK;
+                    break;
+                case ABILITY_SAP_SIPPER:
+                    if (moveType == TYPE_GRASS)
+                        effect = 2, statId = STAT_ATK;
                     break;
                 }
                 if (effect == 1) // Drain Hp ability

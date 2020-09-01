@@ -4018,6 +4018,15 @@ BattleScript_DrizzleActivates::
 	call BattleScript_WeatherFormChanges
 	end3
 
+BattleScript_DefiantActivates::
+	pause 0x20
+	statbuffchange 0, NULL
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printfromtable gStatUpStringIds
+	waitmessage 0x40
+	return
+
 BattleScript_SpeedBoostActivates::
 	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_PKMNRAISEDSPEED
@@ -4088,8 +4097,8 @@ BattleScript_PauseIntimidateActivates:
 	pause 0x20
 BattleScript_IntimidateActivates::
 	setbyte gBattlerTarget, 0x0
-	setstatchanger STAT_ATK, 1, TRUE
 BattleScript_IntimidateActivatesLoop:
+	setstatchanger STAT_ATK, 1, TRUE
 	trygetintimidatetarget BattleScript_IntimidateActivatesReturn
 	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_IntimidateActivatesLoopIncrement
 	jumpifability BS_TARGET, ABILITY_CLEAR_BODY, BattleScript_IntimidatePrevented
@@ -4123,8 +4132,8 @@ BattleScript_PauseIlluminateActivates:
 	pause 0x20
 BattleScript_IlluminateActivates::
 	setbyte gBattlerTarget, 0x0
-	setstatchanger STAT_EVASION, 1, TRUE
 BattleScript_IlluminateActivatesLoop:
+	setstatchanger STAT_EVASION, 1, TRUE
 	trygetintimidatetarget BattleScript_IlluminateActivatesReturn
 	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_IlluminateActivatesLoopIncrement
 	jumpifability BS_TARGET, ABILITY_CLEAR_BODY, BattleScript_IlluminatePrevented

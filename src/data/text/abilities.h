@@ -89,6 +89,12 @@ static const u8 sTechnicianDescription[] = _("Boosts weaker moves.");
 static const u8 sStormDrainDescription[] = _("Draws water moves.");
 static const u8 sIceBodyDescription[] = _("Slight HP recovery in hail.");
 static const u8 sRecklessDescription[] = _("Boosts moves with recoil.");
+static const u8 sDefiantDescription[] = _("Lowered stats up ATTACK.");
+static const u8 sMultiscaleDescription[] = _("Halves damage at full HP.");
+static const u8 sRegeneratorDescription[] = _("Heals upon switching out.");
+static const u8 sSandRushDescription[] = _("Ups Speed in a sandstorm.");
+static const u8 sSapSipperDescription[] = _("Ups ATTACK if hit by GRASS.");
+static const u8 sCompetitiveDescription[] = _("Lowered stats up SP. ATK.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -183,6 +189,12 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_STORM_DRAIN] = _("STORM DRAIN"),
     [ABILITY_ICE_BODY] = _("ICE BODY"),
     [ABILITY_RECKLESS] = _("RECKLESS"),
+    [ABILITY_DEFIANT] = _("DEFIANT"),
+    [ABILITY_MULTISCALE] = _("MULTISCALE"),
+    [ABILITY_REGENERATOR] = _("REGENERATOR"),
+    [ABILITY_SAND_RUSH] = _("SAND RUSH"),
+    [ABILITY_SAP_SIPPER] = _("SAP SIPPER"),
+    [ABILITY_COMPETITIVE] = _("COMPETITIVE"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -278,4 +290,10 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_STORM_DRAIN] = sStormDrainDescription,
     [ABILITY_ICE_BODY] = sIceBodyDescription,
     [ABILITY_RECKLESS] = sRecklessDescription,
+    [ABILITY_DEFIANT] = sDefiantDescription,
+    [ABILITY_MULTISCALE] = sMultiscaleDescription,
+    [ABILITY_REGENERATOR] = sRegeneratorDescription,
+    [ABILITY_SAND_RUSH] = sSandRushDescription,
+    [ABILITY_SAP_SIPPER] =sSapSipperDescription,
+    [ABILITY_COMPETITIVE] = sCompetitiveDescription,
 };
