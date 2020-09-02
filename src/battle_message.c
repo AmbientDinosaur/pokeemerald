@@ -524,6 +524,7 @@ static const u8 sText_TargetAbilityRaisedStat[] = _("{B_DEF_NAME_WITH_PREFIX}'s 
 static const u8 sText_PkmnLowersEvasionWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nlowers {B_DEF_NAME_WITH_PREFIX}'s evasiveness!");
 static const u8 sText_PkmnEnduredUsingSturdy[] = _("{B_DEF_NAME_WITH_PREFIX} ENDURED\nthe hit using {B_DEF_ABILITY}!");
 static const u8 sText_PkmnsXTakesItsToll[] = _("The {B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY}\ntakes its toll!");
+static const u8 sText_PkmnMoveWasDisabledBy[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_BUFF1}\nwas disabled by {B_DEF_NAME_WITH_PREFIX}'s\l{B_DEF_ABILITY}!");
 
 const u8 * const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
@@ -900,6 +901,7 @@ const u8 * const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNLOWERSEVASIONWITH - 12] = sText_PkmnLowersEvasionWith,
     [STRINGID_PKMNENDUREDUSINGSTURDY - 12] = sText_PkmnEnduredUsingSturdy,
     [STRINGID_PKMNSXTAKESITSTOLL - 12] = sText_PkmnsXTakesItsToll,
+    [STRINGID_PKMNMOVEWASDISABLEDBY - 12] = sText_PkmnMoveWasDisabledBy,
 };
 
 const u16 gMissStringIds[] =

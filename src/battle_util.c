@@ -848,6 +848,13 @@ u8 DoBattlerEndTurnEffects(void)
                  && gBattleMons[gStatuses3[gActiveBattler] & STATUS3_LEECHSEED_BATTLER].hp != 0
                  && gBattleMons[gActiveBattler].hp != 0)
                 {
+                    if (gBattleMons[gActiveBattler].ability == ABILITY_MAGIC_GUARD)
+                    {
+                        RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
+                        gBattleStruct->turnEffectsTracker++;
+                        break;
+                    }
+
                     gBattlerTarget = gStatuses3[gActiveBattler] & STATUS3_LEECHSEED_BATTLER; // Notice gBattlerTarget is actually the HP receiver.
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
                     if (gBattleMoveDamage == 0)
@@ -862,6 +869,13 @@ u8 DoBattlerEndTurnEffects(void)
             case ENDTURN_POISON:  // poison
                 if ((gBattleMons[gActiveBattler].status1 & STATUS1_POISON) && gBattleMons[gActiveBattler].hp != 0)
                 {
+                    if (gBattleMons[gActiveBattler].ability == ABILITY_MAGIC_GUARD)
+                    {
+                        RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
+                        gBattleStruct->turnEffectsTracker++;
+                        break;
+                    }
+
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
@@ -873,6 +887,13 @@ u8 DoBattlerEndTurnEffects(void)
             case ENDTURN_BAD_POISON:  // toxic poison
                 if ((gBattleMons[gActiveBattler].status1 & STATUS1_TOXIC_POISON) && gBattleMons[gActiveBattler].hp != 0)
                 {
+                    if (gBattleMons[gActiveBattler].ability == ABILITY_MAGIC_GUARD)
+                    {
+                        RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
+                        gBattleStruct->turnEffectsTracker++;
+                        break;
+                    }
+
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
@@ -887,6 +908,13 @@ u8 DoBattlerEndTurnEffects(void)
             case ENDTURN_BURN:  // burn
                 if ((gBattleMons[gActiveBattler].status1 & STATUS1_BURN) && gBattleMons[gActiveBattler].hp != 0)
                 {
+                    if (gBattleMons[gActiveBattler].ability == ABILITY_MAGIC_GUARD)
+                    {
+                        RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
+                        gBattleStruct->turnEffectsTracker++;
+                        break;
+                    }
+
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
@@ -898,6 +926,13 @@ u8 DoBattlerEndTurnEffects(void)
             case ENDTURN_NIGHTMARES:  // spooky nightmares
                 if ((gBattleMons[gActiveBattler].status2 & STATUS2_NIGHTMARE) && gBattleMons[gActiveBattler].hp != 0)
                 {
+                    if (gBattleMons[gActiveBattler].ability == ABILITY_MAGIC_GUARD)
+                    {
+                        RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
+                        gBattleStruct->turnEffectsTracker++;
+                        break;
+                    }
+
                     // R/S does not perform this sleep check, which causes the nightmare effect to
                     // persist even after the affected Pokemon has been awakened by Shed Skin.
                     if (gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP)
@@ -918,6 +953,13 @@ u8 DoBattlerEndTurnEffects(void)
             case ENDTURN_CURSE:  // curse
                 if ((gBattleMons[gActiveBattler].status2 & STATUS2_CURSED) && gBattleMons[gActiveBattler].hp != 0)
                 {
+                    if (gBattleMons[gActiveBattler].ability == ABILITY_MAGIC_GUARD)
+                    {
+                        RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
+                        gBattleStruct->turnEffectsTracker++;
+                        break;
+                    }
+
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 4;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
@@ -932,6 +974,13 @@ u8 DoBattlerEndTurnEffects(void)
                     gBattleMons[gActiveBattler].status2 -= STATUS2_WRAPPED_TURN(1);
                     if (gBattleMons[gActiveBattler].status2 & STATUS2_WRAPPED)  // damaged by wrap
                     {
+                        if (gBattleMons[gActiveBattler].ability == ABILITY_MAGIC_GUARD)
+                        {
+                            RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
+                            gBattleStruct->turnEffectsTracker++;
+                            break;
+                        }
+
                         // This is the only way I could get this array access to match.
                         gBattleScripting.animArg1 = *(gBattleStruct->wrappedMove + gActiveBattler * 2 + 0);
                         gBattleScripting.animArg2 = *(gBattleStruct->wrappedMove + gActiveBattler * 2 + 1);
@@ -941,7 +990,7 @@ u8 DoBattlerEndTurnEffects(void)
                         gBattleTextBuff1[3] = *(gBattleStruct->wrappedMove + gActiveBattler * 2 + 1);
                         gBattleTextBuff1[4] = EOS;
                         gBattlescriptCurrInstr = BattleScript_WrapTurnDmg;
-                        gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
+                        gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
                         if (gBattleMoveDamage == 0)
                             gBattleMoveDamage = 1;
                     }
@@ -2257,6 +2306,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     gBattleMons[gBattlerAttacker].status2 |= STATUS2_INFATUATED_WITH(gBattlerTarget);
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_CuteCharmActivates;
+                    effect++;
+                }
+                break;
+            case ABILITY_CURSED_BODY:
+                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                 && TARGET_TURN_DAMAGED
+                 && gDisableStructs[gBattlerAttacker].disabledMove == MOVE_NONE
+                 && gBattleMons[gBattlerAttacker].hp != 0
+                 && gBattleMons[gBattlerAttacker].pp[gChosenMovePos] != 0
+                 && (Random() % 3) == 0)
+                {
+                    gDisableStructs[gBattlerAttacker].disabledMove = gChosenMove;
+                    gDisableStructs[gBattlerAttacker].disableTimer = 4;
+                    PREPARE_MOVE_BUFFER(gBattleTextBuff1, gChosenMove);
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_CursedBodyActivates;
                     effect++;
                 }
                 break;
