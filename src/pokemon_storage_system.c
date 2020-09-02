@@ -2157,7 +2157,7 @@ static void Cb2_EnterPSS(u8 boxOption)
 {
     ResetTasks();
     sCurrentBoxOption = boxOption;
-    sPSSData = Alloc(sizeof(*sPSSData));
+    sPSSData = Alloc(sizeof(struct PokemonStorageSystemData));
     if (sPSSData == NULL)
     {
         SetMainCallback2(Cb2_ExitPSS);
@@ -2177,7 +2177,7 @@ static void Cb2_EnterPSS(u8 boxOption)
 static void Cb2_ReturnToPSS(void)
 {
     ResetTasks();
-    sPSSData = Alloc(sizeof(*sPSSData));
+    sPSSData = Alloc(sizeof(struct PokemonStorageSystemData));
     if (sPSSData == NULL)
     {
         SetMainCallback2(Cb2_ExitPSS);
@@ -2576,7 +2576,7 @@ static void Cb_MainPSS(u8 taskId)
             sPSSData->state = 7;
             break;
         case 24:
-            PlaySE(SE_HAZURE);
+            PlaySE(SE_FAILURE);
             break;
         }
         break;
@@ -2622,12 +2622,12 @@ static void Cb_MainPSS(u8 taskId)
         }
         break;
     case 4:
-        PlaySE(SE_HAZURE);
+        PlaySE(SE_FAILURE);
         PrintStorageActionText(PC_TEXT_LAST_POKE);
         sPSSData->state = 6;
         break;
     case 5:
-        PlaySE(SE_HAZURE);
+        PlaySE(SE_FAILURE);
         PrintStorageActionText(PC_TEXT_PLEASE_REMOVE_MAIL);
         sPSSData->state = 6;
         break;
@@ -2843,17 +2843,17 @@ static void Cb_OnSelectedMon(u8 taskId)
         }
         break;
     case 3:
-        PlaySE(SE_HAZURE);
+        PlaySE(SE_FAILURE);
         PrintStorageActionText(PC_TEXT_LAST_POKE);
         sPSSData->state = 6;
         break;
     case 5:
-        PlaySE(SE_HAZURE);
+        PlaySE(SE_FAILURE);
         PrintStorageActionText(PC_TEXT_CANT_RELEASE_EGG);
         sPSSData->state = 6;
         break;
     case 4:
-        PlaySE(SE_HAZURE);
+        PlaySE(SE_FAILURE);
         PrintStorageActionText(PC_TEXT_PLEASE_REMOVE_MAIL);
         sPSSData->state = 6;
         break;
@@ -3277,7 +3277,7 @@ static void Cb_ItemToBag(u8 taskId)
     case 0:
         if (!AddBagItem(sPSSData->cursorMonItem, 1))
         {
-            PlaySE(SE_HAZURE);
+            PlaySE(SE_FAILURE);
             PrintStorageActionText(PC_TEXT_BAG_FULL);
             sPSSData->state = 3;
         }
@@ -3742,7 +3742,7 @@ static void Cb_OnCloseBoxPressed(u8 taskId)
     case 0:
         if (IsMonBeingMoved())
         {
-            PlaySE(SE_HAZURE);
+            PlaySE(SE_FAILURE);
             PrintStorageActionText(PC_TEXT_HOLDING_POKE);
             sPSSData->state = 1;
         }
@@ -3803,7 +3803,7 @@ static void Cb_OnBPressed(u8 taskId)
     case 0:
         if (IsMonBeingMoved())
         {
-            PlaySE(SE_HAZURE);
+            PlaySE(SE_FAILURE);
             PrintStorageActionText(PC_TEXT_HOLDING_POKE);
             sPSSData->state = 1;
         }

@@ -154,7 +154,7 @@ u16 AddTextPrinterParameterized(u8 windowId, u8 fontId, const u8 *str, u8 x, u8 
     printerTemplate.currentY = y;
     printerTemplate.letterSpacing = gFonts[fontId].letterSpacing;
     printerTemplate.lineSpacing = gFonts[fontId].lineSpacing;
-    printerTemplate.unk = gFonts[fontId].unk;
+    printerTemplate.style = gFonts[fontId].style;
     printerTemplate.fgColor = gFonts[fontId].fgColor;
     printerTemplate.bgColor = gFonts[fontId].bgColor;
     printerTemplate.shadowColor = gFonts[fontId].shadowColor;
@@ -475,16 +475,16 @@ u8 GetLastTextColor(u8 colorType)
                                                                                                                     \
     for (; i < toY; i++)                                                                                            \
     {                                                                                                               \
-        asm("":::"sl");                                                                                             \
+        asm("":::"sl"); /* NONMATCHING */                                                                           \
         r5 = *(ptr++);                                                                                              \
         for (j = fromX; j < toX; j++)                                                                               \
         {                                                                                                           \
             const u32 toOrr = r5 & 0xF;                                                                             \
             if (toOrr)                                                                                              \
             {                                                                                                       \
-                dst = windowTiles + ((j / 8) * 32) + ((j & 7) >> 1) + ((i / 8) * widthOffset) + ((i & 7) * 4);    \
-                bits = ((j & 1) * 4);                                                                              \
-                *dst = (toOrr << bits) | ((0xF0 >> bits) & *dst);                                                   \
+                dst = windowTiles + ((j / 8) * 32) + ((j & 7) >> 1) + ((i / 8) * widthOffset) + ((i & 7) * 4);      \
+                bits = ((j & 1) * 4);                                                                               \
+                *dst = (toOrr << bits) | (*dst & (0xF0 >> bits));                                                   \
             }                                                                                                       \
             r5 >>= 4;                                                                                               \
         }                                                                                                           \
@@ -1567,7 +1567,7 @@ void SetDefaultFontsPointer(void)
 
 u8 GetFontAttribute(u8 fontId, u8 attributeId)
 {
-    int result = 0;
+    u8 result = 0;
     switch (attributeId)
     {
         case FONTATTR_MAX_LETTER_WIDTH:
@@ -1582,8 +1582,8 @@ u8 GetFontAttribute(u8 fontId, u8 attributeId)
         case FONTATTR_LINE_SPACING:
             result = gFontInfos[fontId].lineSpacing;
             break;
-        case FONTATTR_UNKNOWN:
-            result = gFontInfos[fontId].unk;
+        case FONTATTR_STYLE:
+            result = gFontInfos[fontId].style;
             break;
         case FONTATTR_COLOR_FOREGROUND:
             result = gFontInfos[fontId].fgColor;

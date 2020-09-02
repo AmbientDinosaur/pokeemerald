@@ -533,7 +533,7 @@ static void CB2_StartShowContestResults(void)
     if (gLinkContestFlags & LINK_CONTEST_FLAG_IS_WIRELESS)
         gPaletteFade.bufferTransferDisabled = TRUE;
     else
-        PlayBGM(MUS_CON_K);
+        PlayBGM(MUS_CONTEST_RESULTS);
 
     SetVBlankCallback(VBlankCB_ShowContestResults);
 }
@@ -619,7 +619,7 @@ static void Task_ShowContestResults(u8 taskId)
         case 3:
             if (IsLinkTaskFinished() == TRUE)
             {
-                PlayBGM(MUS_CON_K);
+                PlayBGM(MUS_CONTEST_RESULTS);
                 gPaletteFade.bufferTransferDisabled = FALSE;
                 gTasks[taskId].tState++;
                 break;
@@ -1796,7 +1796,7 @@ static void Task_DrawFinalStandingNumber(u8 taskId)
             WriteSequenceToBgTilemapBuffer(2, firstTileNum + 0x10, 1, gTasks[taskId].tMonIndex * 3 + 6, 2, 1, 17, 1);
             sContestResults->data->numStandingsPrinted++;
             DestroyTask(taskId);
-            PlaySE(SE_JYUNI);
+            PlaySE(SE_CONTEST_PLACE);
         }
     }
 }
@@ -2201,7 +2201,7 @@ static void AddContestTextPrinter(int windowId, u8 *str, int x)
     textPrinter.currentY = 2;
     textPrinter.letterSpacing = 0;
     textPrinter.lineSpacing = 0;
-    textPrinter.unk = 0;
+    textPrinter.style = 0;
     textPrinter.fgColor = 1;
     textPrinter.bgColor = 0;
     textPrinter.shadowColor = 8;
