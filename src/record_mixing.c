@@ -302,7 +302,7 @@ static void Task_RecordMixing_SoundEffect(u8 taskId)
 {
     if (++gTasks[taskId].tCounter == 50)
     {
-        PlaySE(SE_W213);
+        PlaySE(SE_M_ATTRACT);
         gTasks[taskId].tCounter = 0;
     }
 }
@@ -343,7 +343,7 @@ static void Task_RecordMixing_Main(u8 taskId)
     case 2:
         data[10] = CreateTask(Task_DoRecordMixing, 10);
         tState = 3;
-        PlaySE(SE_W226);
+        PlaySE(SE_M_BATON_PASS);
         break;
     case 3: // wait for Task_DoRecordMixing
         if (!gTasks[data[10]].isActive)
@@ -872,8 +872,12 @@ static void ReceiveDaycareMailData(struct RecordMixingDayCareMail *src, size_t r
             var2 = sub_80E7A9C(&_src->mail[1]);
             if (!var1 && var2)
             {
-                register u8 one asm("r0") = 1; // boo, a fakematch
-                sp24[j][1] = one;
+                #ifndef NONMATCHING
+                    register u8 one asm("r0") = 1; // boo, a fakematch
+                    sp24[j][1] = one;
+                #else
+                    sp24[j][1] = 1;
+                #endif
             }
             else if ((var1 && var2) || (!var1 && !var2))
             {
