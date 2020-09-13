@@ -3180,11 +3180,12 @@ extern const u32 gDecorIconPalette_RegiceDoll[];
 extern const u32 gDecorIcon_RegisteelDoll[];
 extern const u32 gDecorIconPalette_RegisteelDoll[];
 
-extern const u32 gWallclock_Gfx[];
-extern const u16 gWallclockMale_Pal[];
-extern const u16 gWallclockFemale_Pal[];
-extern const u32 gUnknown_08DCC648[];
-extern const u32 gUnknown_08DCC908[];
+extern const u32 gWallClock_Gfx[];
+extern const u16 gWallClockMale_Pal[];
+extern const u16 gWallClockFemale_Pal[];
+extern const u32 gWallClockStart_Tilemap[];
+extern const u32 gWallClockView_Tilemap[];
+
 extern const u32 gBerryFixGameboy_Gfx[];
 extern const u32 gBerryFixGameboy_Tilemap[];
 extern const u16 gBerryFixGameboy_Pal[];
@@ -4893,11 +4894,11 @@ extern const u32 gWallpaperTilemap_Horizontal[];
 extern const u16 gWallpaperPalettes_Horizontal[][16];
 
 // Cable Car
-extern const u32 gUnknown_08DBA5B8[];
-extern const u16 gUnknown_08DBA518[];
+extern const u32 gCableCarBg_Gfx[];
+extern const u16 gCableCarBg_Pal[];
 extern const u32 gCableCar_Gfx[];
 extern const u32 gCableCarDoor_Gfx[];
-extern const u32 gCableCarCord_Gfx[];
+extern const u32 gCableCarCable_Gfx[];
 extern const u16 gCableCar_Pal[];
 
 // Trade
