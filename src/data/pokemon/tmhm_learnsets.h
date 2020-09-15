@@ -4929,7 +4929,7 @@ const u32 gTMHMLearnsets[][2] =
                                         | TMHM(TM49_SNATCH)
                                         | TMHM(HM05_FLASH)),
 
-    [SPECIES_UNOWN]       = TMHM_LEARNSET(0),
+    [SPECIES_UNOWN]       = TMHM_LEARNSET(TMHM(TM10_HIDDEN_POWER)),
 
     [SPECIES_WOBBUFFET]   = TMHM_LEARNSET(TMHM(TM20_SAFEGUARD)),
 
