@@ -289,7 +289,80 @@ Route124_DivingTreasureHuntersHouse_EventScript_EndTrade:: @ 8270F61
 	release
 	end
 
-Route124_DivingTreasureHuntersHouse_EventScript_ShardTradeBoard:: @ 8270F63
+Route124_DivingTreasureHuntersHouse_ElementalPunchTutor::
+	lock
+	faceplayer
+	goto_if_set FLAG_TEMP_1, MoveTutor_EventScript_AskTeachMove
+	msgbox MoveTutor_Text_TutorIntro, MSGBOX_DEFAULT
+	setflag FLAG_TEMP_1
+	goto MoveTutor_EventScript_AskTeachMove
+	end
+
+MoveTutor_EventScript_AskTeachMove::
+	checkitem ITEM_STAR_PIECE, 1
+	compare VAR_RESULT, FALSE
+	goto_if_eq MoveTutor_EventScript_NoStarPieces
+	msgbox MoveTutor_Text_ElementalPunchTeach, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq MoveTutor_EventScript_ElementalPunchDeclined
+	goto MoveTutor_EventScript_ChoosePunchMove
+
+MoveTutor_EventScript_ChoosePunchMove::
+	msgbox MoveTutor_Text_TeachWhichMove, MSGBOX_DEFAULT
+	multichoice 17, 4, MULTI_PUNCH_TUTOR, 0
+	switch VAR_RESULT
+	case 0, MoveTutor_EventScript_ThunderPunch
+	case 1, MoveTutor_EventScript_FirePunch
+	case 2, MoveTutor_EventScript_IcePunch
+	case 3, MoveTutor_EventScript_ElementalPunchDeclined
+	goto MoveTutor_EventScript_ElementalPunchDeclined
+	end
+
+MoveTutor_EventScript_ThunderPunch::
+	msgbox MoveTutor_Text_ElementalPunchWhichMon, MSGBOX_DEFAULT
+	setvar VAR_0x8005, TUTOR_MOVE_THUNDER_PUNCH
+	call MoveTutor_EventScript_OpenPartyMenu
+	compare VAR_RESULT, 0
+	goto_if_eq MoveTutor_EventScript_ElementalPunchDeclined
+	goto MoveTutor_EventScript_ElementalPunchTaught
+	end
+
+MoveTutor_EventScript_FirePunch::
+	msgbox MoveTutor_Text_ElementalPunchWhichMon, MSGBOX_DEFAULT
+	setvar VAR_0x8005, TUTOR_MOVE_FIRE_PUNCH
+	call MoveTutor_EventScript_OpenPartyMenu
+	compare VAR_RESULT, 0
+	goto_if_eq MoveTutor_EventScript_ElementalPunchDeclined
+	goto MoveTutor_EventScript_ElementalPunchTaught
+	end
+
+MoveTutor_EventScript_IcePunch::
+	msgbox MoveTutor_Text_ElementalPunchWhichMon, MSGBOX_DEFAULT
+	setvar VAR_0x8005, TUTOR_MOVE_ICE_PUNCH
+	call MoveTutor_EventScript_OpenPartyMenu
+	compare VAR_RESULT, 0
+	goto_if_eq MoveTutor_EventScript_ElementalPunchDeclined
+	goto MoveTutor_EventScript_ElementalPunchTaught
+	end
+
+MoveTutor_EventScript_NoStarPieces::
+	msgbox MoveTutor_Text_YouHaventGotAnyStarPieces, MSGBOX_DEFAULT
+	release
+	end
+
+MoveTutor_EventScript_ElementalPunchDeclined::
+	msgbox MoveTutor_Text_ElementalPunchDeclined, MSGBOX_DEFAULT
+	release
+	end
+
+MoveTutor_EventScript_ElementalPunchTaught::
+	msgbox MoveTutor_Text_HandedOverStarPiece, MSGBOX_DEFAULT
+	removeitem ITEM_STAR_PIECE
+	msgbox MoveTutor_Text_ElementalPunchTaught, MSGBOX_DEFAULT
+	release
+	end
+
+Route124_DivingTreasureHuntersHouse_EventScript_ShardTradeBoard::
 	msgbox Route124_DivingTreasureHuntersHouse_Text_ShardTradeBoard, MSGBOX_SIGN
 	end
 
@@ -336,6 +409,48 @@ Route124_DivingTreasureHuntersHouse_Text_BagFull: @ 82711A0
 Route124_DivingTreasureHuntersHouse_Text_ComeBackIfYouChangeMind: @ 82711D8
 	.string "No? That's a downer.\n"
 	.string "Well, if you change your mind, come back.$"
+
+MoveTutor_Text_TutorIntro:
+	.string "My friend is all about SHARDS,\n"
+	.string "while I'm more into collecting other\l"
+	.string "treasures, such as STAR PIECES.\p"
+	.string "Actually, you know what?\p"
+	.string "If you give me a STAR PIECE,\n"
+	.string "I can teach your POKéMON some amazing\l"
+	.string "punching moves.$"
+
+MoveTutor_Text_YouHaventGotAnyStarPieces:
+	.string "I'm sorry, friend. It seems you haven't\n"
+	.string "got any STAR PIECES for me.$"
+
+MoveTutor_Text_ElementalPunchTeach:
+	.string "Woah!\n"
+	.string "You have a STAR PIECE!\p"
+	.string "So, I guess you want me to teach\n"
+	.string "a rad punching move?$"
+
+MoveTutor_Text_ElementalPunchDeclined:
+	.string "Aw, you don't feel like it?\n"
+	.string "That's a letdown, friend.\p"
+	.string "Please come back if you change your\n"
+	.string "mind.$"
+
+MoveTutor_Text_TeachWhichMove:
+	.string "Ok, which of my cool punching moves\n"
+	.string "would you like?$"
+
+MoveTutor_Text_ElementalPunchWhichMon:
+	.string "All right, which POKéMON should I teach?$"
+
+MoveTutor_Text_HandedOverStarPiece:
+	.string "{PLAYER} handed over one STAR PIECE\n"
+	.string "in exchange.$"
+
+MoveTutor_Text_ElementalPunchTaught:
+	.string "Awesome! If you want me to\n"
+	.string "teach another punching move,\l"
+	.string "please come back with another\l"
+	.string "STAR PIECE.$"
 
 Route124_DivingTreasureHuntersHouse_Text_ShardTradeBoard: @ 8271217
 	.string "{CLEAR_TO 0x0a}Wanted item{CLEAR_TO 0x7c}Trade item\n"
