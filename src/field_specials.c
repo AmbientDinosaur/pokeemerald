@@ -2557,7 +2557,7 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
     },
     [SCROLL_MULTI_BF_MOVE_TUTOR_2] = 
     {
-        gText_DefenseCurl16BP,
+        gText_Curse16BP,
         gText_Snore24BP,
         gText_MudSlap24BP,
         gText_Swift24BP,
@@ -3161,7 +3161,7 @@ static const u16 sBattleFrontier_TutorMoves1[] =
 
 static const u16 sBattleFrontier_TutorMoves2[] =
 { 
-    MOVE_DEFENSE_CURL, 
+    MOVE_CURSE, 
     MOVE_SNORE, 
     MOVE_MUD_SLAP, 
     MOVE_SWIFT, 
@@ -3228,7 +3228,7 @@ static void ShowBattleFrontierTutorMoveDescription(u8 menu, u16 selection)
 
     static const u8 *const sBattleFrontier_TutorMoveDescriptions2[] = 
     {
-        BattleFrontier_Lounge7_Text_DefenseCurlDesc,
+        BattleFrontier_Lounge7_Text_CurseDesc,
         BattleFrontier_Lounge7_Text_SnoreDesc,
         BattleFrontier_Lounge7_Text_MudSlapDesc,
         BattleFrontier_Lounge7_Text_SwiftDesc,

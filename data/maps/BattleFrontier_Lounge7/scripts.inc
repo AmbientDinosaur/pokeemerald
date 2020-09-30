@@ -141,7 +141,7 @@ BattleFrontier_Lounge7_EventScript_ChooseRightTutorMove:: @ 8265474
 	waitstate
 	copyvar VAR_TEMP_D, VAR_RESULT
 	switch VAR_RESULT
-	case 0, BattleFrontier_Lounge7_EventScript_DefenseCurl
+	case 0, BattleFrontier_Lounge7_EventScript_Curse
 	case 1, BattleFrontier_Lounge7_EventScript_Snore
 	case 2, BattleFrontier_Lounge7_EventScript_MudSlap
 	case 3, BattleFrontier_Lounge7_EventScript_Swift
@@ -165,7 +165,7 @@ BattleFrontier_Lounge7_EventScript_ChooseNewRightTutorMove:: @ 826551F
 	waitstate
 	copyvar VAR_TEMP_D, VAR_RESULT
 	switch VAR_RESULT
-	case 0, BattleFrontier_Lounge7_EventScript_DefenseCurl
+	case 0, BattleFrontier_Lounge7_EventScript_Curse
 	case 1, BattleFrontier_Lounge7_EventScript_Snore
 	case 2, BattleFrontier_Lounge7_EventScript_MudSlap
 	case 3, BattleFrontier_Lounge7_EventScript_Swift
@@ -179,7 +179,7 @@ BattleFrontier_Lounge7_EventScript_ChooseNewRightTutorMove:: @ 826551F
 	case MULTI_B_PRESSED, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
 	end
 
-BattleFrontier_Lounge7_EventScript_DefenseCurl:: @ 82655C7
+BattleFrontier_Lounge7_EventScript_Curse:: @ 82655C7
 	setvar VAR_0x8008, 16
 	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
 	end
@@ -432,10 +432,10 @@ BattleFrontier_Lounge7_Text_SwordsDanceDesc:: @ 8265FDD
 	.string "that sharply\n"
 	.string "raises ATTACK.$"
 
-BattleFrontier_Lounge7_Text_DefenseCurlDesc:: @ 826600A
-	.string "Curls up to con-\n"
-	.string "ceal weak spots\n"
-	.string "and raise DEFENSE.$"
+BattleFrontier_Lounge7_Text_CurseDesc:: @ 826600A
+	.string "A move that func-\n"
+	.string "tions differently\n"
+	.string "for GHOSTS.$"
 
 BattleFrontier_Lounge7_Text_SnoreDesc:: @ 826603E
 	.string "A loud attack\n"
