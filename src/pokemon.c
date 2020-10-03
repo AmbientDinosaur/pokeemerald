@@ -44,7 +44,6 @@
 #include "constants/layouts.h"
 #include "constants/moves.h"
 #include "constants/songs.h"
-#include "constants/species.h"
 #include "constants/trainers.h"
 
 struct SpeciesItem
@@ -2861,6 +2860,8 @@ void CalculateMonStats(struct Pokemon *mon)
         if (currentHP == 0 && oldMaxHP == 0)
             currentHP = newMaxHP;
         else if (currentHP != 0)
+            // BUG: currentHP is unintentionally able to become <= 0 after the instruction below. This causes the pomeg berry glitch.
+            // To fix that set currentHP = 1 if currentHP <= 0.
             currentHP += newMaxHP - oldMaxHP;
         else
             return;
