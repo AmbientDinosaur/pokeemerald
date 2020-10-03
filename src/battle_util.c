@@ -854,7 +854,9 @@ void PrepareStringBattle(u16 stringId, u8 battler)
 {
     if ((stringId == STRINGID_PKMNSSTATCHANGED4 || stringId == STRINGID_PKMNCUTSATTACKWITH || stringId == STRINGID_PKMNLOWERSEVASIONWITH)
               && ((gBattleMons[gBattlerTarget].ability == ABILITY_DEFIANT && gBattleMons[gBattlerTarget].statStages[STAT_ATK] != MAX_STAT_STAGE)
-              || (gBattleMons[gBattlerTarget].ability == ABILITY_COMPETITIVE && gBattleMons[gBattlerTarget].statStages[STAT_SPATK] != MAX_STAT_STAGE)))
+              || (gBattleMons[gBattlerTarget].ability == ABILITY_COMPETITIVE && gBattleMons[gBattlerTarget].statStages[STAT_SPATK] != MAX_STAT_STAGE))
+              && gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != BATTLE_PARTNER(gBattlerTarget)
+              && gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != gBattlerTarget)
     {
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_DefiantActivates;
