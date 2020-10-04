@@ -148,9 +148,9 @@ BattleFrontier_Lounge7_EventScript_ChooseRightTutorMove:: @ 8265474
 	case 4, BattleFrontier_Lounge7_EventScript_IcyWind
 	case 5, BattleFrontier_Lounge7_EventScript_Endure
 	case 6, BattleFrontier_Lounge7_EventScript_PsychUp
-	case 7, BattleFrontier_Lounge7_EventScript_IcePunch
-	case 8, BattleFrontier_Lounge7_EventScript_ThunderPunch
-	case 9, BattleFrontier_Lounge7_EventScript_FirePunch
+	case 7, BattleFrontier_Lounge7_EventScript_HeatWave
+	case 8, BattleFrontier_Lounge7_EventScript_KnockOff
+	case 9, BattleFrontier_Lounge7_EventScript_MeteorMash
 	case 10, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
 	case MULTI_B_PRESSED, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
 	end
@@ -172,9 +172,9 @@ BattleFrontier_Lounge7_EventScript_ChooseNewRightTutorMove:: @ 826551F
 	case 4, BattleFrontier_Lounge7_EventScript_IcyWind
 	case 5, BattleFrontier_Lounge7_EventScript_Endure
 	case 6, BattleFrontier_Lounge7_EventScript_PsychUp
-	case 7, BattleFrontier_Lounge7_EventScript_IcePunch
-	case 8, BattleFrontier_Lounge7_EventScript_ThunderPunch
-	case 9, BattleFrontier_Lounge7_EventScript_FirePunch
+	case 7, BattleFrontier_Lounge7_EventScript_HeatWave
+	case 8, BattleFrontier_Lounge7_EventScript_KnockOff
+	case 9, BattleFrontier_Lounge7_EventScript_MeteorMash
 	case 10, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
 	case MULTI_B_PRESSED, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
 	end
@@ -214,18 +214,18 @@ BattleFrontier_Lounge7_EventScript_PsychUp:: @ 8265609
 	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
 	end
 
-BattleFrontier_Lounge7_EventScript_IcePunch:: @ 8265614
-	setvar VAR_0x8008, 48
+BattleFrontier_Lounge7_EventScript_HeatWave:: @ 8265614
+	setvar VAR_0x8008, 0
 	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
 	end
 
-BattleFrontier_Lounge7_EventScript_ThunderPunch:: @ 826561F
-	setvar VAR_0x8008, 48
+BattleFrontier_Lounge7_EventScript_KnockOff:: @ 826561F
+	setvar VAR_0x8008, 0
 	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
 	end
 
-BattleFrontier_Lounge7_EventScript_FirePunch:: @ 826562A
-	setvar VAR_0x8008, 48
+BattleFrontier_Lounge7_EventScript_MeteorMash:: @ 826562A
+	setvar VAR_0x8008, 0
 	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
 	end
 
@@ -467,17 +467,17 @@ BattleFrontier_Lounge7_Text_PsychUpDesc:: @ 826612D
 	.string "effect(s) and\n"
 	.string "gives to the user.$"
 
-BattleFrontier_Lounge7_Text_IcePunchDesc:: @ 826615F
-	.string "An icy punch\n"
-	.string "that may\n"
-	.string "freeze the foe.$"
+BattleFrontier_Lounge7_Text_HeatWaveDesc:: @ 826615F
+	.string "Exhales a hot\n"
+	.string "breath on the foe.\n"
+	.string "May inflict a burn.$"
 
-BattleFrontier_Lounge7_Text_ThunderPunchDesc:: @ 8266185
-	.string "An electrified\n"
-	.string "punch that may\n"
-	.string "paralyze the foe.$"
+BattleFrontier_Lounge7_Text_KnockOffDesc:: @ 8266185
+	.string "Knocks down the\n"
+	.string "foe's held item to\n"
+	.string "prevent its use.$"
 
-BattleFrontier_Lounge7_Text_FirePunchDesc:: @ 82661B5
-	.string "A fiery punch\n"
-	.string "that may burn\n"
-	.string "the foe.$"
+BattleFrontier_Lounge7_Text_MeteorMashDesc:: @ 82661B5
+	.string "Fires a meteor-\n"
+	.string "like punch.\n"
+	.string "May raise ATTACK.$"

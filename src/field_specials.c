@@ -2563,9 +2563,9 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         gText_IcyWind24BP,
         gText_Endure48BP,
         gText_PsychUp48BP,
-        gText_IcePunch48BP,
-        gText_ThunderPunch48BP,
-        gText_FirePunch48BP,
+        gText_HeatWave48BP,
+        gText_KnockOff48BP,
+        gText_MeteorMash48BP,
         gText_Exit
     },
     [SCROLL_MULTI_SS_TIDAL_DESTINATION] =
@@ -3167,9 +3167,9 @@ static const u16 sBattleFrontier_TutorMoves2[] =
     MOVE_ICY_WIND, 
     MOVE_ENDURE, 
     MOVE_PSYCH_UP, 
-    MOVE_ICE_PUNCH, 
-    MOVE_THUNDER_PUNCH, 
-    MOVE_FIRE_PUNCH 
+    MOVE_HEAT_WAVE, 
+    MOVE_KNOCK_OFF, 
+    MOVE_METEOR_MASH 
 };
 
 void BufferBattleFrontierTutorMoveName(void)
@@ -3234,9 +3234,9 @@ static void ShowBattleFrontierTutorMoveDescription(u8 menu, u16 selection)
         BattleFrontier_Lounge7_Text_IcyWindDesc,
         BattleFrontier_Lounge7_Text_EndureDesc,
         BattleFrontier_Lounge7_Text_PsychUpDesc,
-        BattleFrontier_Lounge7_Text_IcePunchDesc,
-        BattleFrontier_Lounge7_Text_ThunderPunchDesc,
-        BattleFrontier_Lounge7_Text_FirePunchDesc,
+        BattleFrontier_Lounge7_Text_HeatWaveDesc,
+        BattleFrontier_Lounge7_Text_KnockOffDesc,
+        BattleFrontier_Lounge7_Text_MeteorMashDesc,
         gText_Exit,
     };
 

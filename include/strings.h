@@ -736,9 +736,9 @@ extern const u8 gText_Swift24BP[];
 extern const u8 gText_IcyWind24BP[];
 extern const u8 gText_Endure48BP[];
 extern const u8 gText_PsychUp48BP[];
-extern const u8 gText_IcePunch48BP[];
-extern const u8 gText_ThunderPunch48BP[];
-extern const u8 gText_FirePunch48BP[];
+extern const u8 gText_HeatWave48BP[];
+extern const u8 gText_KnockOff48BP[];
+extern const u8 gText_MeteorMash48BP[];
 
 extern const u8 gText_SlateportCity[];
 extern const u8 gText_BattleFrontier[];
@@ -880,9 +880,9 @@ extern const u8 BattleFrontier_Lounge7_Text_SwiftDesc[];
 extern const u8 BattleFrontier_Lounge7_Text_IcyWindDesc[];
 extern const u8 BattleFrontier_Lounge7_Text_EndureDesc[];
 extern const u8 BattleFrontier_Lounge7_Text_PsychUpDesc[];
-extern const u8 BattleFrontier_Lounge7_Text_IcePunchDesc[];
-extern const u8 BattleFrontier_Lounge7_Text_ThunderPunchDesc[];
-extern const u8 BattleFrontier_Lounge7_Text_FirePunchDesc[];
+extern const u8 BattleFrontier_Lounge7_Text_HeatWaveDesc[];
+extern const u8 BattleFrontier_Lounge7_Text_KnockOffDesc[];
+extern const u8 BattleFrontier_Lounge7_Text_MeteorMashDesc[];
 
 extern const u8 gText_YourPartnerHasRetired[];
 
