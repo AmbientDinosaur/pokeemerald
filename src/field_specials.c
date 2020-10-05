@@ -2542,30 +2542,30 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
     },
     [SCROLL_MULTI_BF_MOVE_TUTOR_1] = 
     {
-        gText_Softboiled16BP,
-        gText_SeismicToss24BP,
-        gText_DreamEater24BP,
+        gText_Softboiled8BP,
+        gText_Counter12BP,
+        gText_SeismicToss12BP,
+        gText_DreamEater12BP,
+        gText_ThunderWave12BP,
         gText_MegaPunch24BP,
-        gText_MegaKick48BP,
-        gText_BodySlam48BP,
-        gText_RockSlide48BP,
-        gText_Counter48BP,
-        gText_ThunderWave48BP,
-        gText_SwordsDance48BP,
+        gText_MegaKick24BP,
+        gText_BodySlam24BP,
+        gText_RockSlide24BP,
+        gText_SwordsDance24BP,
         gText_Exit
     },
     [SCROLL_MULTI_BF_MOVE_TUTOR_2] = 
     {
-        gText_Curse16BP,
-        gText_Snore24BP,
-        gText_MudSlap24BP,
-        gText_Swift24BP,
-        gText_IcyWind24BP,
-        gText_Endure48BP,
-        gText_PsychUp48BP,
-        gText_HeatWave48BP,
-        gText_KnockOff48BP,
-        gText_MeteorMash48BP,
+        gText_Curse8BP,
+        gText_Snore12BP,
+        gText_MudSlap12BP,
+        gText_Swift12BP,
+        gText_IcyWind12BP,
+        gText_Endure24BP,
+        gText_PsychUp24BP,
+        gText_HeatWave24BP,
+        gText_KnockOff24BP,
+        gText_MeteorMash24BP,
         gText_Exit
     },
     [SCROLL_MULTI_SS_TIDAL_DESTINATION] =
@@ -3147,14 +3147,14 @@ static void HideFrontierExchangeCornerItemIcon(u16 menu, u16 unused)
 static const u16 sBattleFrontier_TutorMoves1[] =
 { 
     MOVE_SOFT_BOILED, 
+    MOVE_COUNTER, 
     MOVE_SEISMIC_TOSS, 
     MOVE_DREAM_EATER, 
+    MOVE_THUNDER_WAVE, 
     MOVE_MEGA_PUNCH, 
     MOVE_MEGA_KICK, 
     MOVE_BODY_SLAM, 
     MOVE_ROCK_SLIDE, 
-    MOVE_COUNTER, 
-    MOVE_THUNDER_WAVE, 
     MOVE_SWORDS_DANCE 
 };
 
@@ -3213,14 +3213,14 @@ static void ShowBattleFrontierTutorMoveDescription(u8 menu, u16 selection)
     static const u8 *const sBattleFrontier_TutorMoveDescriptions1[] = 
     {
         BattleFrontier_Lounge7_Text_SoftboiledDesc,
+        BattleFrontier_Lounge7_Text_CounterDesc,
         BattleFrontier_Lounge7_Text_SeismicTossDesc,
         BattleFrontier_Lounge7_Text_DreamEaterDesc,
+        BattleFrontier_Lounge7_Text_ThunderWaveDesc,
         BattleFrontier_Lounge7_Text_MegaPunchDesc,
         BattleFrontier_Lounge7_Text_MegaKickDesc,
         BattleFrontier_Lounge7_Text_BodySlamDesc,
         BattleFrontier_Lounge7_Text_RockSlideDesc,
-        BattleFrontier_Lounge7_Text_CounterDesc,
-        BattleFrontier_Lounge7_Text_ThunderWaveDesc,
         BattleFrontier_Lounge7_Text_SwordsDanceDesc,
         gText_Exit,
     };
