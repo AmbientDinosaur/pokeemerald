@@ -2140,6 +2140,24 @@ BattleScript_EffectStockpile::
 	waitanimation
 	printfromtable gStockpileUsedStringIds
 	waitmessage 0x40
+	jumpifmovehadnoeffect BattleScript_EffectStockpileEnd
+	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_DEF, MAX_STAT_STAGE, BattleScript_EffectStockpileTryDef
+	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPDEF, MAX_STAT_STAGE, BattleScript_CantRaiseMultipleStats
+BattleScript_EffectStockpileTryDef::
+	setbyte sSTAT_ANIM_PLAYED, FALSE
+	playstatchangeanimation BS_ATTACKER, BIT_DEF | BIT_SPDEF, 0x0
+	setstatchanger STAT_DEF, 1, FALSE
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_ALLOW_PTR, BattleScript_EffectStockpileTrySpDef
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_EffectStockpileTrySpDef
+	printfromtable gStatUpStringIds
+	waitmessage 0x40
+BattleScript_EffectStockpileTrySpDef::
+	setstatchanger STAT_SPDEF, 1, FALSE
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_ALLOW_PTR, BattleScript_EffectStockpileEnd
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_EffectStockpileEnd
+	printfromtable gStatUpStringIds
+	waitmessage 0x40
+BattleScript_EffectStockpileEnd::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectSpitUp::
@@ -2148,9 +2166,10 @@ BattleScript_EffectSpitUp::
 	attackstring
 	ppreduce
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	critcalc
 	stockpiletobasedamage BattleScript_SpitUpFail
 	typecalc
-	adjustsetdamage
+	adjustnormaldamage
 	goto BattleScript_HitFromAtkAnimation
 BattleScript_SpitUpFail::
 	pause 0x20
