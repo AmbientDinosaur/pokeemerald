@@ -1010,7 +1010,7 @@ static const u8 sFakeOutDescription[] = _(
     "that causes flinching.");
 
 static const u8 sUproarDescription[] = _(
-    "Causes an uproar for 2 to 5\n"
+    "Causes an uproar for three\n"
     "turns and prevents sleep.");
 
 static const u8 sStockpileDescription[] = _(
