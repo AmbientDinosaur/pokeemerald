@@ -266,7 +266,12 @@ MauvilleCity_BikeShop_Text_HandbooksAreInBack: @ 820F3C3
 	.string "I work here.\p"
 	.string "If you need advice on how to ride your\n"
 	.string "BIKE, there're a couple handbooks in\l"
-	.string "the back.$"
+	.string "the back.\p"
+	.string "Also, you should know that you can\n"
+	.string "switch BIKES while you're riding by\l"
+	.string "pressing the R Button.\p"
+	.string "Don't let RYDEL know I told you that\n"
+	.string "though.$"
 
 MauvilleCity_BikeShop_Text_MachHandbookWhichPage: @ 820F445
 	.string "It's a handbook on the MACH BIKE.\p"
