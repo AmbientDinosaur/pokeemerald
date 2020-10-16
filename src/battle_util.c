@@ -55,7 +55,7 @@ void HandleAction_UseMove(void)
         return;
     }
 
-    gCritMultiplier = 1;
+    gIsCriticalHit = FALSE;
     gBattleScripting.dmgMultiplier = 1;
     gBattleStruct->atkCancellerTracker = 0;
     gMoveResultFlags = 0;

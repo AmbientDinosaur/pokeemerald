@@ -649,6 +649,7 @@ extern u8 gBattlerFainted;
 extern u8 gEffectBattler;
 extern u8 gPotentialItemEffectBattler;
 extern u8 gAbsentBattlerFlags;
+extern u8 gIsCriticalHit;
 extern u8 gCritMultiplier;
 extern u8 gMultiHitCounter;
 extern const u8 *gBattlescriptCurrInstr;

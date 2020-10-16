@@ -605,7 +605,7 @@ static const struct StatFractions sAccuracyStageRatios[] =
 };
 
 // The chance is 1/N for each stage.
-static const u16 sCriticalHitChance[] = {16, 8, 4, 3, 2};
+static const u16 sCriticalHitChance[] = {16, 8, 2, 1, 1};
 
 static const u32 sStatusFlagsForMoveEffects[NUM_MOVE_EFFECTS] =
 {
@@ -1090,7 +1090,8 @@ static bool8 AccuracyCalcHelper(u16 move)
 
     gHitMarker &= ~HITMARKER_IGNORE_UNDERWATER;
 
-    if ((WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_RAIN_ANY) && gBattleMoves[move].effect == EFFECT_THUNDER)
+    if ((WEATHER_HAS_EFFECT && (((gBattleWeather & WEATHER_RAIN_ANY) && gBattleMoves[move].effect == EFFECT_THUNDER)
+     || (((gBattleWeather & WEATHER_HAIL_ANY) && move == MOVE_BLIZZARD))))
      || (gBattleMoves[move].effect == EFFECT_ALWAYS_HIT || gBattleMoves[move].effect == EFFECT_VITAL_THROW))
     {
         JumpIfMoveFailed(7, move);
@@ -1285,7 +1286,15 @@ static void Cmd_critcalc(void)
      && !(gStatuses3[gBattlerAttacker] & STATUS3_CANT_SCORE_A_CRIT)
      && !(gBattleTypeFlags & (BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FIRST_BATTLE))
      && !(Random() % sCriticalHitChance[critChance]))
-        gCritMultiplier = 2;
+        gIsCriticalHit = TRUE;
+    else
+        gIsCriticalHit = FALSE;
+
+    if (gIsCriticalHit == TRUE)
+    {
+        gCritMultiplier = gCritMultiplier * 15;
+        gCritMultiplier = gCritMultiplier / 10;
+    }
     else
         gCritMultiplier = 1;
 
@@ -1374,9 +1383,7 @@ static void Cmd_typecalc(void)
     if (IS_BATTLER_OF_TYPE(gBattlerAttacker, moveType))
     {
         if (gBattleMons[gBattlerAttacker].ability == ABILITY_ADAPTABILITY)
-        {
-            gBattleMoveDamage = gBattleMoveDamage * 2;
-        }
+            gBattleMoveDamage *= 2;
         else
         {
             gBattleMoveDamage = gBattleMoveDamage * 15;
@@ -1559,9 +1566,7 @@ u8 TypeCalc(u16 move, u8 attacker, u8 defender)
     if (IS_BATTLER_OF_TYPE(attacker, moveType))
     {
         if (gBattleMons[attacker].ability == ABILITY_ADAPTABILITY)
-        {
-            gBattleMoveDamage = gBattleMoveDamage * 2;
-        }
+            gBattleMoveDamage *= 2;
         else
         {
             gBattleMoveDamage = gBattleMoveDamage * 15;
@@ -2005,7 +2010,7 @@ static void Cmd_critmessage(void)
 {
     if (gBattleControllerExecFlags == 0)
     {
-        if (gCritMultiplier == 2 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
+        if (gIsCriticalHit == TRUE && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
         {
             PrepareStringBattle(STRINGID_CRITICALHIT, gBattlerAttacker);
             gBattleCommunication[MSG_DISPLAY] = 1;
@@ -2439,6 +2444,20 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 else
                     break;
             }
+            if ((IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_ELECTRIC))
+                && (gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+                && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
+            {
+                BattleScriptPush(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = BattleScript_PRLZPrevention;
+
+                gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+                RESET_RETURN
+            }
+            if (IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_ELECTRIC))
+                break;
+            if (gBattleMons[gEffectBattler].ability == ABILITY_LIMBER)
+                break;
             if (gBattleMons[gEffectBattler].status1)
                 break;
 
@@ -3634,7 +3653,7 @@ static void MoveValuesCleanUp(void)
 {
     gMoveResultFlags = 0;
     gBattleScripting.dmgMultiplier = 1;
-    gCritMultiplier = 1;
+    gIsCriticalHit = FALSE;
     gBattleCommunication[MOVE_EFFECT_BYTE] = 0;
     gBattleCommunication[6] = 0;
     gHitMarker &= ~(HITMARKER_DESTINYBOND);
