@@ -4288,7 +4288,20 @@ BattleScript_FlinchPrevention::
 	pause 0x20
 	printstring STRINGID_PKMNSXPREVENTSFLINCHING
 	waitmessage 0x40
+	jumpifability BS_TARGET, ABILITY_STEADFAST, BattleScript_SetStatChangeSteadfast
+	setstatchanger STAT_SPDEF, 1, FALSE
+BattleScript_FlinchPreventionStatSet::
+	statbuffchange STAT_BUFF_ALLOW_PTR, BattleScript_FlinchPreventionEnd
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_FlinchPreventionEnd
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_TARGETABILITYSTATRAISE
+	waitmessage 0x40
+BattleScript_FlinchPreventionEnd::
 	goto BattleScript_MoveEnd
+BattleScript_SetStatChangeSteadfast::
+	setstatchanger STAT_SPEED, 1, FALSE
+	goto BattleScript_FlinchPreventionStatSet
 
 BattleScript_OwnTempoPrevents::
 	pause 0x20

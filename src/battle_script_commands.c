@@ -2565,18 +2565,21 @@ void SetMoveEffect(bool8 primary, u8 certain)
                 }
                 break;
             case MOVE_EFFECT_FLINCH:
-                if (gBattleMons[gEffectBattler].ability == ABILITY_INNER_FOCUS)
+                if ((gBattleMons[gEffectBattler].ability == ABILITY_INNER_FOCUS
+                 || gBattleMons[gEffectBattler].ability == ABILITY_STEADFAST)
+                 && GetBattlerTurnOrderNum(gEffectBattler) > gCurrentTurnActionNumber)
                 {
-                    if (primary == TRUE || certain == MOVE_EFFECT_CERTAIN)
+                    if (gBattleMons[gEffectBattler].ability == ABILITY_INNER_FOCUS)
                     {
                         gLastUsedAbility = ABILITY_INNER_FOCUS;
                         RecordAbilityBattle(gEffectBattler, ABILITY_INNER_FOCUS);
-                        gBattlescriptCurrInstr = BattleScript_FlinchPrevention;
                     }
                     else
                     {
-                        gBattlescriptCurrInstr++;
+                        gLastUsedAbility = ABILITY_STEADFAST;
+                        RecordAbilityBattle(gEffectBattler, ABILITY_STEADFAST);
                     }
+                    gBattlescriptCurrInstr = BattleScript_FlinchPrevention;
                 }
                 else
                 {
