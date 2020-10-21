@@ -1002,10 +1002,9 @@
 	.4byte \param0
 	.endm
 
-	.macro trydobeatup param0:req, param1:req
+	.macro trydobeatup param0:req
 	.byte 0xc4
 	.4byte \param0
-	.4byte \param1
 	.endm
 
 	.macro setsemiinvulnerablebit

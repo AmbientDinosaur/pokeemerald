@@ -1419,7 +1419,7 @@ BattleScript_TripleKickLoop::
 BattleScript_DoTripleKickAttack::
 	accuracycheck BattleScript_TripleKickNoMoreHits, ACC_CURR_MOVE
 	movevaluescleanup
-	addbyte sTRIPLE_KICK_POWER, 10
+	addbyte sTRIPLE_KICK_POWER, 20
 	addbyte sMULTIHIT_STRING + 4, 0x1
 	copyhword gDynamicBasePower, sTRIPLE_KICK_POWER
 	critcalc
@@ -1436,6 +1436,7 @@ BattleScript_DoTripleKickAttack::
 	datahpupdate BS_TARGET
 	critmessage
 	waitmessage 0x40
+	multihitresultmessage
 	printstring STRINGID_EMPTYSTRING3
 	waitmessage 0x1
 	moveendto MOVEEND_NEXT_TARGET
@@ -1995,15 +1996,15 @@ BattleScript_EffectBeatUp::
 	attackstring
 	pause 0x20
 	ppreduce
+	initmultihitstring
 	setbyte gBattleCommunication, 0x0
 BattleScript_BeatUpLoop::
+	trydobeatup BattleScript_BeatUpEnd
 	movevaluescleanup
-	trydobeatup BattleScript_BeatUpEnd, BattleScript_ButItFailed
 	printstring STRINGID_PKMNATTACK
 	critcalc
-	jumpifbyte CMP_NOT_EQUAL, gIsCriticalHit, TRUE, BattleScript_BeatUpAttack
-	manipulatedamage DMG_DOUBLED
-BattleScript_BeatUpAttack::
+	damagecalc
+	typecalc
 	adjustnormaldamage
 	attackanimation
 	waitanimation
@@ -2014,12 +2015,20 @@ BattleScript_BeatUpAttack::
 	datahpupdate BS_TARGET
 	critmessage
 	waitmessage 0x40
-	resultmessage
-	waitmessage 0x40
-	tryfaintmon BS_TARGET, FALSE, NULL
+	multihitresultmessage
+	printstring STRINGID_EMPTYSTRING3
+	waitmessage 0x1
+	addbyte sMULTIHIT_STRING + 4, 0x1
 	moveendto MOVEEND_NEXT_TARGET
+	jumpifbyte CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_FOE_ENDURED, BattleScript_MultiHitPrintStrings
 	goto BattleScript_BeatUpLoop
 BattleScript_BeatUpEnd::
+	resultmessage
+	waitmessage 0x40
+	copyarray gBattleTextBuff1, sMULTIHIT_STRING, 0x6
+	printstring STRINGID_HITXTIMES
+	waitmessage 0x40
+	tryfaintmon BS_TARGET, FALSE, NULL
 	end
 
 BattleScript_EffectSemiInvulnerable::

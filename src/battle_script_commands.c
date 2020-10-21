@@ -8939,7 +8939,6 @@ static void Cmd_trydobeatup(void)
     }
     else
     {
-        u8 beforeLoop = gBattleCommunication[0];
         for (;gBattleCommunication[0] < PARTY_SIZE; gBattleCommunication[0]++)
         {
             if (GetMonData(&party[gBattleCommunication[0]], MON_DATA_HP)
@@ -8951,22 +8950,15 @@ static void Cmd_trydobeatup(void)
         {
             PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattlerAttacker, gBattleCommunication[0])
 
-            gBattlescriptCurrInstr += 9;
+            gBattlescriptCurrInstr += 5;
 
-            gBattleMoveDamage = gBaseStats[GetMonData(&party[gBattleCommunication[0]], MON_DATA_SPECIES)].baseAttack;
-            gBattleMoveDamage *= gBattleMoves[gCurrentMove].power;
-            gBattleMoveDamage *= (GetMonData(&party[gBattleCommunication[0]], MON_DATA_LEVEL) * 2 / 5 + 2);
-            gBattleMoveDamage /= gBaseStats[gBattleMons[gBattlerTarget].species].baseDefense;
-            gBattleMoveDamage = (gBattleMoveDamage / 50) + 2;
-            if (gProtectStructs[gBattlerAttacker].helpingHand)
-                gBattleMoveDamage = gBattleMoveDamage * 15 / 10;
+            gDynamicBasePower = gBaseStats[GetMonData(&party[gBattleCommunication[0]], MON_DATA_SPECIES)].baseAttack;
+            gDynamicBasePower = (gDynamicBasePower / 10) + 5;
 
             gBattleCommunication[0]++;
         }
-        else if (beforeLoop != 0)
-            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
         else
-            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 5);
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
     }
 }
 
