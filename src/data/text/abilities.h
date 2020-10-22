@@ -97,6 +97,7 @@ static const u8 sMultiscaleDescription[] = _("Halves damage at full HP.");
 static const u8 sRegeneratorDescription[] = _("Heals upon switching out.");
 static const u8 sSandRushDescription[] = _("Ups SPEED in a sandstorm.");
 static const u8 sSapSipperDescription[] = _("Ups ATTACK if hit by GRASS.");
+static const u8 sPranksterDescription[] = _("Gives priority to status moves.");
 static const u8 sCompetitiveDescription[] = _("Lowered stats up SP. ATK.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -200,6 +201,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_REGENERATOR] = _("REGENERATOR"),
     [ABILITY_SAND_RUSH] = _("SAND RUSH"),
     [ABILITY_SAP_SIPPER] = _("SAP SIPPER"),
+    [ABILITY_PRANKSTER] = _("PRANKSTER"),
     [ABILITY_COMPETITIVE] = _("COMPETITIVE"),
 };
 
@@ -304,5 +306,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_REGENERATOR] = sRegeneratorDescription,
     [ABILITY_SAND_RUSH] = sSandRushDescription,
     [ABILITY_SAP_SIPPER] =sSapSipperDescription,
+    [ABILITY_PRANKSTER] =sPranksterDescription,
     [ABILITY_COMPETITIVE] = sCompetitiveDescription,
 };
