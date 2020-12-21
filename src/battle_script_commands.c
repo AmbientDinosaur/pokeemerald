@@ -955,7 +955,7 @@ static void Cmd_attackcanceler(void)
 
     gHitMarker |= HITMARKER_OBEYS;
 
-    if (gProtectStructs[gBattlerTarget].bounceMove && gBattleMoves[gCurrentMove].flags & FLAG_MAGICCOAT_AFFECTED)
+    if (gProtectStructs[gBattlerTarget].bounceMove && gBattleMoves[gCurrentMove].flags & FLAG_MAGIC_COAT_AFFECTED)
     {
         PressurePPLose(gBattlerAttacker, gBattlerTarget, MOVE_MAGIC_COAT);
         gProtectStructs[gBattlerTarget].bounceMove = 0;
@@ -3597,7 +3597,7 @@ static void Cmd_unknown_24(void)
 
     if (HP_count == 0)
         gBattleOutcome |= B_OUTCOME_LOST;
-
+    
     HP_count = 0;
 
     for (i = 0; i < PARTY_SIZE; i++)
@@ -3614,14 +3614,17 @@ static void Cmd_unknown_24(void)
 
     if (gBattleOutcome == 0 && (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_x2000000)))
     {
-        s32 foundPlayer = 0, foundOpponent;
+        s32 foundPlayer = 0;
+        s32 foundOpponent;
+
         for (i = 0; i < gBattlersCount; i += 2)
         {
             if ((gHitMarker & HITMARKER_FAINTED2(i)) && (!gSpecialStatuses[i].flag40))
                 foundPlayer++;
         }
-
+        
         foundOpponent = 0;
+
         for (i = 1; i < gBattlersCount; i += 2)
         {
             if ((gHitMarker & HITMARKER_FAINTED2(i)) && (!gSpecialStatuses[i].flag40))
@@ -3631,14 +3634,14 @@ static void Cmd_unknown_24(void)
         if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
         {
             if (foundOpponent + foundPlayer > 1)
-                gBattlescriptCurrInstr = (u8*) T2_READ_32(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = T2_READ_PTR(gBattlescriptCurrInstr + 1);
             else
                 gBattlescriptCurrInstr += 5;
         }
         else
         {
             if (foundOpponent != 0 && foundPlayer != 0)
-                gBattlescriptCurrInstr = (u8*) T2_READ_32(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = T2_READ_PTR(gBattlescriptCurrInstr + 1);
             else
                 gBattlescriptCurrInstr += 5;
         }
@@ -4744,24 +4747,19 @@ static void Cmd_jumpifcantswitch(void)
             || (gStatuses3[gActiveBattler] & STATUS3_ROOTED)))
     {
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 2);
-        return;
     }
-
-    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
+    else if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
     {
-        #ifndef NONMATCHING
-            asm("":::"r5");
-        #endif // NONMATCHING
         if (GetBattlerSide(gActiveBattler) == B_SIDE_OPPONENT)
             party = gEnemyParty;
         else
             party = gPlayerParty;
 
-        i = 0;
+        lastMonId = 0;
         if (gActiveBattler & 2)
-            i = 3;
+            lastMonId = 3;
 
-        for (lastMonId = i + 3; i < lastMonId; i++)
+        for (i = lastMonId; i < lastMonId + 3; i++)
         {
             if (GetMonData(&party[i], MON_DATA_SPECIES) != SPECIES_NONE
              && !GetMonData(&party[i], MON_DATA_IS_EGG)
@@ -4770,7 +4768,7 @@ static void Cmd_jumpifcantswitch(void)
                 break;
         }
 
-        if (i == lastMonId)
+        if (i == lastMonId + 3)
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 2);
         else
             gBattlescriptCurrInstr += 6;
@@ -4783,18 +4781,18 @@ static void Cmd_jumpifcantswitch(void)
             {
                 party = gPlayerParty;
 
-                i = 0;
+                lastMonId = 0;
                 if (GetLinkTrainerFlankId(GetBattlerMultiplayerId(gActiveBattler)) == TRUE)
-                    i = 3;
+                    lastMonId = 3;
             }
             else
             {
                 party = gEnemyParty;
 
                 if (gActiveBattler == 1)
-                    i = 0;
+                    lastMonId = 0;
                 else
-                    i = 3;
+                    lastMonId = 3;
             }
         }
         else
@@ -4804,12 +4802,12 @@ static void Cmd_jumpifcantswitch(void)
             else
                 party = gPlayerParty;
 
-            i = 0;
+            lastMonId = 0;
             if (GetLinkTrainerFlankId(GetBattlerMultiplayerId(gActiveBattler)) == TRUE)
-                i = 3;
+                lastMonId = 3;
         }
 
-        for (lastMonId = i + 3; i < lastMonId; i++)
+        for (i = lastMonId; i < lastMonId + 3; i++)
         {
             if (GetMonData(&party[i], MON_DATA_SPECIES) != SPECIES_NONE
              && !GetMonData(&party[i], MON_DATA_IS_EGG)
@@ -4818,7 +4816,7 @@ static void Cmd_jumpifcantswitch(void)
                 break;
         }
 
-        if (i == lastMonId)
+        if (i == lastMonId + 3)
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 2);
         else
             gBattlescriptCurrInstr += 6;
@@ -4827,11 +4825,11 @@ static void Cmd_jumpifcantswitch(void)
     {
         party = gEnemyParty;
 
-        i = 0;
+        lastMonId = 0;
         if (gActiveBattler == B_POSITION_OPPONENT_RIGHT)
-            i = 3;
+            lastMonId = 3;
 
-        for (lastMonId = i + 3; i < lastMonId; i++)
+        for (i = lastMonId; i < lastMonId + 3; i++)
         {
             if (GetMonData(&party[i], MON_DATA_SPECIES) != SPECIES_NONE
              && !GetMonData(&party[i], MON_DATA_IS_EGG)
@@ -4840,7 +4838,7 @@ static void Cmd_jumpifcantswitch(void)
                 break;
         }
 
-        if (i == lastMonId)
+        if (i == lastMonId + 3)
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 2);
         else
             gBattlescriptCurrInstr += 6;
@@ -5118,14 +5116,9 @@ static void Cmd_openpartyscreen(void)
         hitmarkerFaintBits = gHitMarker >> 0x1C;
 
         gBattlerFainted = 0;
-        while (1)
-        {
-            if (gBitTable[gBattlerFainted] & hitmarkerFaintBits)
-                break;
-            if (gBattlerFainted >= gBattlersCount)
-                break;
+        while (!(gBitTable[gBattlerFainted] & hitmarkerFaintBits)
+               && gBattlerFainted < gBattlersCount)
             gBattlerFainted++;
-        }
 
         if (gBattlerFainted == gBattlersCount)
             gBattlescriptCurrInstr = jumpPtr;
@@ -5621,8 +5614,8 @@ static void Cmd_hitanimation(void)
 static u32 GetTrainerMoneyToGive(u16 trainerId)
 {
     u32 i = 0;
+    u32 lastMonLevel = 0;
     u32 moneyReward;
-    u8 lastMonLevel = 0;
 
     if (trainerId == TRAINER_SECRET_BASE)
     {
@@ -6133,7 +6126,7 @@ static void PutLevelAndGenderOnLvlUpBox(void)
     printerTemplate.currentY = 0;
     printerTemplate.letterSpacing = 0;
     printerTemplate.lineSpacing = 0;
-    printerTemplate.style = 0;
+    printerTemplate.unk = 0;
     printerTemplate.fgColor = TEXT_COLOR_WHITE;
     printerTemplate.bgColor = TEXT_COLOR_TRANSPARENT;
     printerTemplate.shadowColor = TEXT_COLOR_DARK_GREY;
@@ -7239,6 +7232,7 @@ static void Cmd_forcerandomswitch(void)
     s32 i;
     s32 battler1PartyId = 0;
     s32 battler2PartyId = 0;
+
     s32 firstMonId;
     s32 lastMonId = 0; // + 1
     s32 monsCount;
@@ -7360,10 +7354,11 @@ static void Cmd_forcerandomswitch(void)
                     {
                         i = Random() % monsCount;
                         i += firstMonId;
-                    } while (i == battler2PartyId || i == battler1PartyId);
+                    }
+                    while (i == battler2PartyId || i == battler1PartyId);
                 } while (GetMonData(&party[i], MON_DATA_SPECIES) == SPECIES_NONE
                        || GetMonData(&party[i], MON_DATA_IS_EGG) == TRUE
-                       || GetMonData(&party[i], MON_DATA_HP) == 0); // Should be one while loop, conjoined by an ||, but that doesn't match. Equivalent logic though
+                       || GetMonData(&party[i], MON_DATA_HP) == 0); //should be one while loop, but that doesn't match.
             }
             *(gBattleStruct->monToSwitchIntoId + gBattlerTarget) = i;
 
