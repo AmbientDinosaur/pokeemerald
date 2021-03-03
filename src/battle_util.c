@@ -2955,7 +2955,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                 if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                  && TARGET_TURN_DAMAGED
                  && (Random() % 10) == 0
-                 && gBattleMoves[gCurrentMove].flags & FLAG_KINGSROCK_AFFECTED
+                 && gBattleMoves[gCurrentMove].flags & FLAG_KINGS_ROCK_AFFECTED
                  && gBattleMons[gBattlerAttacker].item != ITEM_KINGS_ROCK
                  && gBattleMons[gBattlerTarget].hp)
                 {
