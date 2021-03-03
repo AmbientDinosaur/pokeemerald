@@ -1190,7 +1190,7 @@ static void Cmd_get_how_powerful_move_is(void)
         *(&gBattleStruct->dynamicMoveType) = 0;
         gBattleScripting.dmgMultiplier = 1;
         gMoveResultFlags = 0;
-        gCritMultiplier = 1;
+        gIsCriticalHit = FALSE;
 
         for (checkedMove = 0; checkedMove < MAX_MON_MOVES; checkedMove++)
         {
@@ -1471,7 +1471,7 @@ static void Cmd_get_highest_type_effectiveness(void)
     *dynamicMoveType = 0;
     gBattleScripting.dmgMultiplier = 1;
     gMoveResultFlags = 0;
-    gCritMultiplier = 1;
+    gIsCriticalHit = FALSE;
     AI_THINKING_STRUCT->funcResult = 0;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -1511,7 +1511,7 @@ static void Cmd_if_type_effectiveness(void)
     gBattleStruct->dynamicMoveType = 0;
     gBattleScripting.dmgMultiplier = 1;
     gMoveResultFlags = 0;
-    gCritMultiplier = 1;
+    gIsCriticalHit = FALSE;
 
     gBattleMoveDamage = AI_EFFECTIVENESS_x1;
     gCurrentMove = AI_THINKING_STRUCT->moveConsidered;
@@ -1725,7 +1725,7 @@ static void Cmd_if_can_faint(void)
     gBattleStruct->dynamicMoveType = 0;
     gBattleScripting.dmgMultiplier = 1;
     gMoveResultFlags = 0;
-    gCritMultiplier = 1;
+    gIsCriticalHit = FALSE;
     gCurrentMove = AI_THINKING_STRUCT->moveConsidered;
     AI_CalcDmg(sBattler_AI, gBattlerTarget);
     TypeCalc(gCurrentMove, sBattler_AI, gBattlerTarget);
@@ -1754,7 +1754,7 @@ static void Cmd_if_cant_faint(void)
     gBattleStruct->dynamicMoveType = 0;
     gBattleScripting.dmgMultiplier = 1;
     gMoveResultFlags = 0;
-    gCritMultiplier = 1;
+    gIsCriticalHit = FALSE;
     gCurrentMove = AI_THINKING_STRUCT->moveConsidered;
     AI_CalcDmg(sBattler_AI, gBattlerTarget);
     TypeCalc(gCurrentMove, sBattler_AI, gBattlerTarget);

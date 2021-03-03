@@ -3220,7 +3220,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
 
     if (IS_TYPE_PHYSICAL(type))
     {
-        if (gIsCriticalHit == TRUE)
+        if (gIsCriticalHit)
         {
             if (attacker->statStages[STAT_ATK] > DEFAULT_STAT_STAGE)
                 APPLY_STAT_MOD(damage, attacker, attack, STAT_ATK)
@@ -3233,7 +3233,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         damage = damage * gBattleMovePower;
         damage *= (2 * attacker->level / 5 + 2);
 
-        if (gIsCriticalHit == TRUE)
+        if (gIsCriticalHit)
         {
             if (defender->statStages[STAT_DEF] < DEFAULT_STAT_STAGE)
                 APPLY_STAT_MOD(damageHelper, defender, defense, STAT_DEF)
@@ -3270,7 +3270,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
 
     if (IS_TYPE_SPECIAL(type))
     {
-        if (gIsCriticalHit == TRUE)
+        if (gIsCriticalHit)
         {
             if (attacker->statStages[STAT_SPATK] > DEFAULT_STAT_STAGE)
                 APPLY_STAT_MOD(damage, attacker, spAttack, STAT_SPATK)
@@ -3283,7 +3283,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         damage = damage * gBattleMovePower;
         damage *= (2 * attacker->level / 5 + 2);
 
-        if (gIsCriticalHit == TRUE)
+        if (gIsCriticalHit)
         {
             if (defender->statStages[STAT_SPDEF] < DEFAULT_STAT_STAGE)
                 APPLY_STAT_MOD(damageHelper, defender, spDefense, STAT_SPDEF)

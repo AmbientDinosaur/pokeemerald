@@ -1290,14 +1290,6 @@ static void Cmd_critcalc(void)
     else
         gIsCriticalHit = FALSE;
 
-    if (gIsCriticalHit == TRUE)
-    {
-        gCritMultiplier = gCritMultiplier * 15;
-        gCritMultiplier = gCritMultiplier / 10;
-    }
-    else
-        gCritMultiplier = 1;
-
     gBattlescriptCurrInstr++;
 }
 
@@ -1307,8 +1299,10 @@ static void Cmd_damagecalc(void)
     gBattleMoveDamage = CalculateBaseDamage(&gBattleMons[gBattlerAttacker], &gBattleMons[gBattlerTarget], gCurrentMove,
                                             sideStatus, gDynamicBasePower,
                                             gBattleStruct->dynamicMoveType, gBattlerAttacker, gBattlerTarget);
-    gBattleMoveDamage = gBattleMoveDamage * gCritMultiplier * gBattleScripting.dmgMultiplier;
+    gBattleMoveDamage *= gBattleScripting.dmgMultiplier;
 
+    if (gIsCriticalHit)
+        gBattleMoveDamage = gBattleMoveDamage * 15 / 10;
     if (gStatuses3[gBattlerAttacker] & STATUS3_CHARGED_UP && gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)
         gBattleMoveDamage *= 2;
     if (gProtectStructs[gBattlerAttacker].helpingHand)
@@ -1324,8 +1318,10 @@ void AI_CalcDmg(u8 attacker, u8 defender)
                                             sideStatus, gDynamicBasePower,
                                             gBattleStruct->dynamicMoveType, attacker, defender);
     gDynamicBasePower = 0;
-    gBattleMoveDamage = gBattleMoveDamage * gCritMultiplier * gBattleScripting.dmgMultiplier;
+    gBattleMoveDamage *= gBattleScripting.dmgMultiplier;
 
+    if (gIsCriticalHit)
+        gBattleMoveDamage = gBattleMoveDamage * 15 / 10;
     if (gStatuses3[attacker] & STATUS3_CHARGED_UP && gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)
         gBattleMoveDamage *= 2;
     if (gProtectStructs[attacker].helpingHand)
@@ -6903,9 +6899,10 @@ static void Cmd_stockpiletobasedamage(void)
                                                     gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)], 0,
                                                     0, gBattlerAttacker, gBattlerTarget)
                                 * gDisableStructs[gBattlerAttacker].stockpileCounter;
-            gBattleMoveDamage = gBattleMoveDamage * gCritMultiplier * gBattleScripting.dmgMultiplier;
             gBattleScripting.animTurn = gDisableStructs[gBattlerAttacker].stockpileCounter;
 
+            if (gIsCriticalHit)
+                gBattleMoveDamage = gBattleMoveDamage * 15 / 10;
             if (gProtectStructs[gBattlerAttacker].helpingHand)
                 gBattleMoveDamage = gBattleMoveDamage * 15 / 10;
         }
