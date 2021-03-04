@@ -229,6 +229,7 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectCalmMind
 	.4byte BattleScript_EffectDragonDance
 	.4byte BattleScript_EffectCamouflage
+	.4byte BattleScript_EffectHeadSmash
 
 BattleScript_EffectSpeedUp::
 BattleScript_EffectSpecialDefenseUp::
@@ -2891,6 +2892,10 @@ BattleScript_EffectCamouflage::
 	printstring STRINGID_PKMNCHANGEDTYPE
 	waitmessage 0x40
 	goto BattleScript_MoveEnd
+
+BattleScript_EffectHeadSmash::
+	setmoveeffect MOVE_EFFECT_RECOIL_50 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
+	goto BattleScript_EffectHit
 
 BattleScript_FaintAttacker::
 	playfaintcry BS_ATTACKER

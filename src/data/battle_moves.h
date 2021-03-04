@@ -4279,11 +4279,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_SHEER_COLD] =
     {
-        .effect = EFFECT_DOUBLE_EDGE,
-        .power = 120,
+        .effect = EFFECT_HEAD_SMASH,
+        .power = 150,
         .type = TYPE_ICE,
-        .accuracy = 100,
-        .pp = 15,
+        .accuracy = 80,
+        .pp = 5,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,

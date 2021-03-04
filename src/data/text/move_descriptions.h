@@ -1314,8 +1314,8 @@ static const u8 sSandTombDescription[] = _(
     "quicksand for 2 to 5 turns.");
 
 static const u8 sSheerColdDescription[] = _(
-    "A chilling attack that\n"
-    "slightly hurts the user.");
+    "A chilling attack that also\n"
+    "terribly hurts the user.");
 
 static const u8 sMuddyWaterDescription[] = _(
     "Attacks with muddy water.\n"
