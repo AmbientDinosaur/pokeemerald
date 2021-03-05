@@ -7039,7 +7039,7 @@ u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove)
     {
         sLearningMoveTableID = 0;
     }
-    while(gLevelUpLearnsets[species][sLearningMoveTableID] != LEVEL_UP_END)
+    while (gLevelUpLearnsets[species][sLearningMoveTableID] != LEVEL_UP_END)
     {
         u16 moveLevel;
         moveLevel = (gLevelUpLearnsets[species][sLearningMoveTableID] & LEVEL_UP_MOVE_LV);
@@ -7051,5 +7051,5 @@ u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove)
         }
         sLearningMoveTableID++;
     }
-    return 0;
+    return MOVE_NONE;
 }
