@@ -321,7 +321,6 @@ static const u16 sPoints_SetUp[] =
 };
 static const u16 sPoints_RainMoves[] =
 {
-    MOVE_BUBBLE, 3, 
     MOVE_WHIRLPOOL, 3, 
     MOVE_OCTAZOOKA, 3, 
     MOVE_CLAMP, 3, 
@@ -335,7 +334,6 @@ static const u16 sPoints_RainMoves[] =
     MOVE_HYDRO_CANNON, 3, 
     MOVE_HYDRO_PUMP, 3, 
     MOVE_BUBBLE_BEAM, 3, 
-    MOVE_WATER_SPORT, 0, // Unnecessary, unlisted moves are already given 0 points
     MOVE_WATER_GUN, 3,
     MOVE_WATER_PULSE, 3, 
     MOVE_WEATHER_BALL, 3, 

@@ -385,13 +385,7 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboMoves = {0},
     },
 
-    [MOVE_SONIC_BOOM] =
-    {
-        .effect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
-        .contestCategory = CONTEST_CATEGORY_COOL,
-        .comboStarterId = 0,
-        .comboMoves = {0},
-    },
+    [MOVE_SONIC_BOOM] = {0},
 
     [MOVE_DISABLE] =
     {
@@ -649,13 +643,7 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboMoves = {0},
     },
 
-    [MOVE_DRAGON_RAGE] =
-    {
-        .effect = CONTEST_EFFECT_BETTER_WHEN_LATER,
-        .contestCategory = CONTEST_CATEGORY_COOL,
-        .comboStarterId = COMBO_STARTER_DRAGON_RAGE,
-        .comboMoves = {COMBO_STARTER_DRAGON_BREATH, COMBO_STARTER_DRAGON_DANCE},
-    },
+    [MOVE_DRAGON_RAGE] = {0},
 
     [MOVE_FIRE_SPIN] =
     {
@@ -1049,13 +1037,7 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboMoves = {0},
     },
 
-    [MOVE_CONSTRICT] =
-    {
-        .effect = CONTEST_EFFECT_STARTLE_PREV_MON,
-        .contestCategory = CONTEST_CATEGORY_TOUGH,
-        .comboStarterId = 0,
-        .comboMoves = {0},
-    },
+    [MOVE_CONSTRICT] = {0},
 
     [MOVE_AMNESIA] =
     {
@@ -1113,13 +1095,7 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboMoves = {0},
     },
 
-    [MOVE_BARRAGE] =
-    {
-        .effect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
-        .contestCategory = CONTEST_CATEGORY_TOUGH,
-        .comboStarterId = 0,
-        .comboMoves = {0},
-    },
+    [MOVE_BARRAGE] = {0},
 
     [MOVE_LEECH_LIFE] =
     {
@@ -1153,13 +1129,7 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboMoves = {0},
     },
 
-    [MOVE_BUBBLE] =
-    {
-        .effect = CONTEST_EFFECT_STARTLE_PREV_MONS,
-        .contestCategory = CONTEST_CATEGORY_CUTE,
-        .comboStarterId = 0,
-        .comboMoves = {COMBO_STARTER_RAIN_DANCE},
-    },
+    [MOVE_BUBBLE] = {0},
 
     [MOVE_DIZZY_PUNCH] =
     {
@@ -1537,13 +1507,7 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboMoves = {COMBO_STARTER_LOCK_ON},
     },
 
-    [MOVE_FORESIGHT] =
-    {
-        .effect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
-        .contestCategory = CONTEST_CATEGORY_SMART,
-        .comboStarterId = 0,
-        .comboMoves = {0},
-    },
+    [MOVE_FORESIGHT] = {0},
 
     [MOVE_DESTINY_BOND] =
     {
@@ -2113,13 +2077,7 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboMoves = {COMBO_STARTER_FOCUS_ENERGY},
     },
 
-    [MOVE_SMELLING_SALT] =
-    {
-        .effect = CONTEST_EFFECT_STARTLE_PREV_MON,
-        .contestCategory = CONTEST_CATEGORY_SMART,
-        .comboStarterId = 0,
-        .comboMoves = {0},
-    },
+    [MOVE_SMELLING_SALT] = {0},
 
     [MOVE_FOLLOW_ME] =
     {
@@ -2393,13 +2351,7 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboMoves = {COMBO_STARTER_SUNNY_DAY},
     },
 
-    [MOVE_MUD_SPORT] =
-    {
-        .effect = CONTEST_EFFECT_HIGHLY_APPEALING,
-        .contestCategory = CONTEST_CATEGORY_CUTE,
-        .comboStarterId = COMBO_STARTER_MUD_SPORT,
-        .comboMoves = {COMBO_STARTER_MUD_SLAP, COMBO_STARTER_WATER_SPORT},
-    },
+    [MOVE_MUD_SPORT] = {0},
 
     [MOVE_ICE_BALL] =
     {
@@ -2521,13 +2473,7 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboMoves = {COMBO_STARTER_SUNNY_DAY},
     },
 
-    [MOVE_ODOR_SLEUTH] =
-    {
-        .effect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
-        .contestCategory = CONTEST_CATEGORY_SMART,
-        .comboStarterId = 0,
-        .comboMoves = {0},
-    },
+    [MOVE_ODOR_SLEUTH] = {0},
 
     [MOVE_ROCK_TOMB] =
     {
@@ -2553,13 +2499,7 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboMoves = {0},
     },
 
-    [MOVE_GRASS_WHISTLE] =
-    {
-        .effect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
-        .contestCategory = CONTEST_CATEGORY_SMART,
-        .comboStarterId = 0,
-        .comboMoves = {0},
-    },
+    [MOVE_GRASS_WHISTLE] = {0},
 
     [MOVE_TICKLE] =
     {
@@ -2761,13 +2701,7 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboMoves = {COMBO_STARTER_GROWTH},
     },
 
-    [MOVE_WATER_SPORT] =
-    {
-        .effect = CONTEST_EFFECT_HIGHLY_APPEALING,
-        .contestCategory = CONTEST_CATEGORY_CUTE,
-        .comboStarterId = COMBO_STARTER_WATER_SPORT,
-        .comboMoves = {COMBO_STARTER_RAIN_DANCE, COMBO_STARTER_MUD_SPORT},
-    },
+    [MOVE_WATER_SPORT] = {0},
 
     [MOVE_CALM_MIND] =
     {

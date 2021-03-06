@@ -639,15 +639,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_SONIC_BOOM] =
     {
-        .effect = EFFECT_SONICBOOM,
-        .power = 1,
+        .effect = EFFECT_HIT,
+        .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 90,
-        .pp = 20,
+        .accuracy = 0,
+        .pp = 0,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags = 0,
     },
 
     [MOVE_DISABLE] =
@@ -1068,15 +1068,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_DRAGON_RAGE] =
     {
-        .effect = EFFECT_DRAGON_RAGE,
-        .power = 1,
-        .type = TYPE_DRAGON,
-        .accuracy = 100,
-        .pp = 10,
+        .effect = EFFECT_HIT,
+        .power = 0,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags = 0,
     },
 
     [MOVE_FIRE_SPIN] =
@@ -1718,15 +1718,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_CONSTRICT] =
     {
-        .effect = EFFECT_SPEED_DOWN_HIT,
-        .power = 10,
+        .effect = EFFECT_HIT,
+        .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 100,
-        .pp = 35,
-        .secondaryEffectChance = 10,
+        .accuracy = 0,
+        .pp = 0,
+        .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+        .flags = 0,
     },
 
     [MOVE_AMNESIA] =
@@ -1822,15 +1822,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_BARRAGE] =
     {
-        .effect = EFFECT_MULTI_HIT,
-        .power = 15,
+        .effect = EFFECT_HIT,
+        .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 85,
-        .pp = 20,
+        .accuracy = 0,
+        .pp = 0,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .flags = 0,
     },
 
     [MOVE_LEECH_LIFE] =
@@ -1887,15 +1887,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_BUBBLE] =
     {
-        .effect = EFFECT_SPEED_DOWN_HIT,
-        .power = 20,
-        .type = TYPE_WATER,
-        .accuracy = 100,
-        .pp = 30,
-        .secondaryEffectChance = 10,
-        .target = MOVE_TARGET_BOTH,
+        .effect = EFFECT_HIT,
+        .power = 0,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+        .flags = 0,
     },
 
     [MOVE_DIZZY_PUNCH] =
@@ -2511,15 +2511,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_FORESIGHT] =
     {
-        .effect = EFFECT_FORESIGHT,
+        .effect = EFFECT_HIT,
         .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 100,
-        .pp = 40,
+        .accuracy = 0,
+        .pp = 0,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+        .flags = 0,
     },
 
     [MOVE_DESTINY_BOND] =
@@ -3447,15 +3447,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_SMELLING_SALT] =
     {
-        .effect = EFFECT_SMELLINGSALT,
-        .power = 70,
+        .effect = EFFECT_HIT,
+        .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 100,
-        .pp = 10,
+        .accuracy = 0,
+        .pp = 0,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+        .flags = 0,
     },
 
     [MOVE_FOLLOW_ME] =
@@ -3902,13 +3902,13 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_MUD_SPORT] =
     {
-        .effect = EFFECT_MUD_SPORT,
+        .effect = EFFECT_HIT,
         .power = 0,
-        .type = TYPE_GROUND,
-        .accuracy = 100,
-        .pp = 15,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_USER,
+        .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = 0,
     },
@@ -4110,15 +4110,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_ODOR_SLEUTH] =
     {
-        .effect = EFFECT_FORESIGHT,
+        .effect = EFFECT_HIT,
         .power = 0,
         .type = TYPE_NORMAL,
-        .accuracy = 100,
-        .pp = 40,
+        .accuracy = 0,
+        .pp = 0,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+        .flags = 0,
     },
 
     [MOVE_ROCK_TOMB] =
@@ -4162,15 +4162,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_GRASS_WHISTLE] =
     {
-        .effect = EFFECT_SLEEP,
+        .effect = EFFECT_HIT,
         .power = 0,
-        .type = TYPE_GRASS,
-        .accuracy = 55,
-        .pp = 15,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MAGIC_COAT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+        .flags = 0,
     },
 
     [MOVE_TICKLE] =
@@ -4500,13 +4500,13 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_WATER_SPORT] =
     {
-        .effect = EFFECT_WATER_SPORT,
+        .effect = EFFECT_HIT,
         .power = 0,
-        .type = TYPE_WATER,
-        .accuracy = 100,
-        .pp = 15,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_USER,
+        .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = 0,
     },

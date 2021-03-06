@@ -100,7 +100,6 @@ AI_CheckBadMove_CheckSoundproof: @ 82DBFFE
 	if_move MOVE_SNORE, Score_Minus10
 	if_move MOVE_UPROAR, Score_Minus10
 	if_move MOVE_METAL_SOUND, Score_Minus10
-	if_move MOVE_GRASS_WHISTLE, Score_Minus10
 
 AI_CheckBadMove_CheckEffect: @ 82DC045
 	if_effect EFFECT_SLEEP, AI_CBM_Sleep
@@ -869,7 +868,6 @@ AI_CV_MirrorMove_EncouragedMovesToMirror: @ 82DCB6C
     .2byte MOVE_SPORE
     .2byte MOVE_HYPNOSIS
     .2byte MOVE_SING
-    .2byte MOVE_GRASS_WHISTLE
     .2byte MOVE_SHADOW_PUNCH
     .2byte MOVE_SAND_ATTACK
     .2byte MOVE_SMOKESCREEN

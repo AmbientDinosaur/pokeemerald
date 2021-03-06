@@ -902,7 +902,7 @@ const struct ContestPokemon gContestOpponents[] =
         {
             MOVE_PETAL_DANCE,
             MOVE_MAGICAL_LEAF,
-            MOVE_GRASS_WHISTLE,
+            MOVE_NEEDLE_ARM,
             MOVE_INGRAIN
         },
         .cool = 50,
@@ -1236,8 +1236,8 @@ const struct ContestPokemon gContestOpponents[] =
         .aiPool_Tough = TRUE,
         .moves =
         {
-            MOVE_MUD_SPORT,
-            MOVE_WATER_SPORT,
+            MOVE_WATER_GUN,
+            MOVE_MUD_SLAP,
             MOVE_EARTHQUAKE,
             MOVE_FUTURE_SIGHT
         },
@@ -1686,7 +1686,7 @@ const struct ContestPokemon gContestOpponents[] =
         {
             MOVE_TAUNT,
             MOVE_THIEF,
-            MOVE_ODOR_SLEUTH,
+            MOVE_POISON_FANG,
             MOVE_TAKE_DOWN
         },
         .cool = 40,
@@ -2077,7 +2077,7 @@ const struct ContestPokemon gContestOpponents[] =
         .moves =
         {
             MOVE_TAIL_WHIP,
-            MOVE_BUBBLE,
+            MOVE_WATER_GUN,
             MOVE_FOCUS_PUNCH,
             MOVE_WITHDRAW
         },

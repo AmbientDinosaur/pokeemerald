@@ -194,8 +194,8 @@ static const u8 sSupersonicDescription[] = _(
     "that may confuse the foe.");
 
 static const u8 sSonicBoomDescription[] = _(
-    "Launches shock waves that\n"
-    "always inflict 20 HP damage.");
+    "This move can't be used. It\n"
+    "should be forgotten.");
 
 static const u8 sDisableDescription[] = _(
     "Psychically disables one of\n"
@@ -326,8 +326,8 @@ static const u8 sStringShotDescription[] = _(
     "to reduce its SPEED.");
 
 static const u8 sDragonRageDescription[] = _(
-    "Launches shock waves that\n"
-    "always inflict 40 HP damage.");
+    "This move can't be used. It\n"
+    "should be forgotten.");
 
 static const u8 sFireSpinDescription[] = _(
     "Traps the foe in a ring of\n"
@@ -526,8 +526,8 @@ static const u8 sSpikeCannonDescription[] = _(
     "strike 2 to 5 times.");
 
 static const u8 sConstrictDescription[] = _(
-    "Constricts to inflict pain.\n"
-    "May lower SPEED.");
+    "This move can't be used. It\n"
+    "should be forgotten.");
 
 static const u8 sAmnesiaDescription[] = _(
     "Forgets about something\n"
@@ -558,8 +558,8 @@ static const u8 sPoisonGasDescription[] = _(
     "gas that may poison.");
 
 static const u8 sBarrageDescription[] = _(
-    "Hurls round objects at the\n"
-    "foe 2 to 5 times.");
+    "This move can't be used. It\n"
+    "should be forgotten.");
 
 static const u8 sLeechLifeDescription[] = _(
     "An attack that steals half\n"
@@ -578,8 +578,8 @@ static const u8 sTransformDescription[] = _(
     "become a copy of the foe.");
 
 static const u8 sBubbleDescription[] = _(
-    "An attack using bubbles.\n"
-    "May lower the foe's SPEED.");
+    "This move can't be used. It\n"
+    "should be forgotten.");
 
 static const u8 sDizzyPunchDescription[] = _(
     "A rhythmic punch that may\n"
@@ -770,8 +770,8 @@ static const u8 sZapCannonDescription[] = _(
     "paralysis, but inaccurate.");
 
 static const u8 sForesightDescription[] = _(
-    "Negates the foe's efforts\n"
-    "to heighten evasiveness.");
+    "This move can't be used. It\n"
+    "should be forgotten.");
 
 static const u8 sDestinyBondDescription[] = _(
     "If the user faints, the foe\n"
@@ -1058,8 +1058,8 @@ static const u8 sFocusPunchDescription[] = _(
     "The user flinches if hit.");
 
 static const u8 sSmellingSaltDescription[] = _(
-    "Powerful against paralyzed\n"
-    "foes, but also heals them.");
+    "This move can't be used. It\n"
+    "should be forgotten.");
 
 static const u8 sFollowMeDescription[] = _(
     "Draws attention to make\n"
@@ -1198,8 +1198,8 @@ static const u8 sBlazeKickDescription[] = _(
     "hit ratio. May cause a burn.");
 
 static const u8 sMudSportDescription[] = _(
-    "Covers the user in mud to\n"
-    "raise electrical resistance.");
+    "This move can't be used. It\n"
+    "should be forgotten.");
 
 static const u8 sIceBallDescription[] = _(
     "A 5-turn attack that gains\n"
@@ -1262,8 +1262,8 @@ static const u8 sOverheatDescription[] = _(
     "but sharply lowers SP. ATK.");
 
 static const u8 sOdorSleuthDescription[] = _(
-    "Negates the foe's efforts\n"
-    "to heighten evasiveness.");
+    "This move can't be used. It\n"
+    "should be forgotten.");
 
 static const u8 sRockTombDescription[] = _(
     "Stops the foe from moving\n"
@@ -1278,8 +1278,8 @@ static const u8 sMetalSoundDescription[] = _(
     "that sharply lowers SP. DEF.");
 
 static const u8 sGrassWhistleDescription[] = _(
-    "Lulls the foe into sleep\n"
-    "with a pleasant melody.");
+    "This move can't be used. It\n"
+    "should be forgotten.");
 
 static const u8 sTickleDescription[] = _(
     "Makes the foe laugh to\n"
@@ -1382,8 +1382,8 @@ static const u8 sMagicalLeafDescription[] = _(
     "that cannot be evaded.");
 
 static const u8 sWaterSportDescription[] = _(
-    "The user becomes soaked to\n"
-    "raise resistance to fire.");
+    "This move can't be used. It\n"
+    "should be forgotten.");
 
 static const u8 sCalmMindDescription[] = _(
     "Raises SP. ATK and SP. DEF\n"
