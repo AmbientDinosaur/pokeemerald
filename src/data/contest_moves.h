@@ -82,7 +82,7 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboMoves = {COMBO_STARTER_LEER},
     },
 
-    [MOVE_VICE_GRIP] =
+    [MOVE_VISE_GRIP] =
     {
         .effect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
@@ -1473,7 +1473,7 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
         .comboMoves = {COMBO_STARTER_RAGE, COMBO_STARTER_LEER},
     },
 
-    [MOVE_FAINT_ATTACK] =
+    [MOVE_FEINT_ATTACK] =
     {
         .effect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_SMART,

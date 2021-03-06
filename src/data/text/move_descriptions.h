@@ -41,7 +41,7 @@ static const u8 sScratchDescription[] = _(
     "Scratches the foe with\n"
     "sharp claws.");
 
-static const u8 sViceGripDescription[] = _(
+static const u8 sViseGripDescription[] = _(
     "Grips the foe with large and\n"
     "powerful pincers.");
 
@@ -737,7 +737,7 @@ static const u8 sScaryFaceDescription[] = _(
     "Frightens with a scary face\n"
     "to sharply reduce SPEED.");
 
-static const u8 sFaintAttackDescription[] = _(
+static const u8 sFeintAttackDescription[] = _(
     "Draws the foe close, then\n"
     "strikes without fail.");
 
@@ -1430,7 +1430,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_ICE_PUNCH - 1] = sIcePunchDescription,
     [MOVE_THUNDER_PUNCH - 1] = sThunderPunchDescription,
     [MOVE_SCRATCH - 1] = sScratchDescription,
-    [MOVE_VICE_GRIP - 1] = sViceGripDescription,
+    [MOVE_VISE_GRIP - 1] = sViseGripDescription,
     [MOVE_GUILLOTINE - 1] = sGuillotineDescription,
     [MOVE_RAZOR_WIND - 1] = sRazorWindDescription,
     [MOVE_SWORDS_DANCE - 1] = sSwordsDanceDescription,
@@ -1604,7 +1604,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_PROTECT - 1] = sProtectDescription,
     [MOVE_MACH_PUNCH - 1] = sMachPunchDescription,
     [MOVE_SCARY_FACE - 1] = sScaryFaceDescription,
-    [MOVE_FAINT_ATTACK - 1] = sFaintAttackDescription,
+    [MOVE_FEINT_ATTACK - 1] = sFeintAttackDescription,
     [MOVE_SWEET_KISS - 1] = sSweetKissDescription,
     [MOVE_BELLY_DRUM - 1] = sBellyDrumDescription,
     [MOVE_SLUDGE_BOMB - 1] = sSludgeBombDescription,

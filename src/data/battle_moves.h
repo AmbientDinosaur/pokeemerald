@@ -143,7 +143,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
     },
 
-    [MOVE_VICE_GRIP] =
+    [MOVE_VISE_GRIP] =
     {
         .effect = EFFECT_HIT,
         .power = 55,
@@ -2405,7 +2405,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MAGIC_COAT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
     },
 
-    [MOVE_FAINT_ATTACK] =
+    [MOVE_FEINT_ATTACK] =
     {
         .effect = EFFECT_ALWAYS_HIT,
         .power = 70,
