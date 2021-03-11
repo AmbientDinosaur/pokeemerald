@@ -3199,10 +3199,6 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         gBattleMovePower = (120 * gBattleMovePower) / 100;
     if (attacker->ability == ABILITY_RECKLESS && gBattleMoves[gCurrentMove].flags & FLAG_RECKLESS_AFFECTED)
         gBattleMovePower = (120 * gBattleMovePower) / 100;
-    if (attacker->ability == ABILITY_SNIPER && gIsCriticalHit == TRUE)
-        gBattleMovePower = (150 * gBattleMovePower) / 100;
-    if (defender->ability == ABILITY_MULTISCALE && defender->hp == defender->maxHP)
-        gBattleMovePower /= 2;
     if (type == TYPE_ELECTRIC && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, 0xFD, 0))
         gBattleMovePower /= 2;
     if (type == TYPE_FIRE && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, 0xFE, 0))
@@ -3348,6 +3344,12 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         if ((gBattleResources->flags->flags[battlerIdAtk] & RESOURCE_FLAG_FLASH_FIRE) && type == TYPE_FIRE)
             damage = (15 * damage) / 10;
     }
+
+    if (attacker->ability == ABILITY_SNIPER && gIsCriticalHit == TRUE)
+        damage = (15 * damage) / 10;
+
+    if (defender->ability == ABILITY_MULTISCALE && defender->hp == defender->maxHP)
+        damage /= 2;
 
     return damage + 2;
 }
