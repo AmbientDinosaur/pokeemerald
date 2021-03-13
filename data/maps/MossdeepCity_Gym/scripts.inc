@@ -573,8 +573,10 @@ MossdeepCity_Gym_Text_ReceivedMindBadge: @ 822196A
 	.string "from TATE and LIZA.$"
 
 MossdeepCity_Gym_Text_ExplainMindBadgeTakeThis: @ 8221999
-	.string "TATE: The MIND BADGE enhances the\n"
-	.string "SP. ATK and SP. DEF of POKéMON.\p"
+	.string "TATE: The MIND BADGE has the power\n"
+	.string "to make all POKéMON up to Level 80,\l"
+	.string "including those you've received from\l"
+	.string "other people, obey you!\p"
 	.string "LIZA: It also lets you use the HM move\n"
 	.string "DIVE outside of battle.\p"
 	.string "TATE: You should also take this, too.$"
